@@ -1,0 +1,243 @@
+# Universal read-only defaults.
+# Do not write project-specific values into this file.
+# Resolve detected values and user decisions in .site-builder/project.yaml.
+
+schema_version: 1
+
+project:
+  name: null
+  routes:
+    homepage: /
+
+input:
+  scan_recursive: true
+  preserve_originals: true
+  classification: inspect-content-not-filenames
+  may_contain: [references, fonts, icons, logos, illustrations, photos, assets, content]
+
+references:
+  root: "input"
+  primary_canvas_width: 1440
+  source_pixel_dimensions_are_authoritative: false
+  filename_metadata_required: false
+  order: numeric-prefix-when-present-otherwise-infer
+  copy_policy: exact-visible-copy
+
+frontend:
+  stack: detect
+  package_manager: detect
+  dev_command: detect
+  build_command: detect
+  browser_support: modern
+
+design:
+  primary_viewport: 1440
+  target_viewports: [1440, 1024, 768, 390, 320]
+
+  grid:
+    production_contract_required: true
+    single_runtime_source: true
+    layout_source: design-system-tokens-source
+    active_tokens:
+      columns: --ds-grid-columns
+      page_margin: --ds-grid-margin
+      gutter: --ds-grid-gutter
+      max_width: --ds-grid-max-width
+    production_primitives: [Container, PageGrid, GridOverlay]
+    breakpoints: calibrate-and-record-in-project-state
+    geometry_tolerance: 1px
+    desktop:
+      columns: 12
+      page_margin: 48px
+      gutter: 24px
+      max_width: 1344px
+    tablet:
+      columns: 8
+      page_margin: 32px
+      gutter: 24px
+    mobile:
+      columns: 4
+      page_margin: 16px
+      gutter: 16px
+
+  spacing:
+    base_unit: 8px
+    structural_values: multiples-of-8
+    optical_exceptions: 1px-4px
+    named_scale_required: [xs, s, m, l, xl, 2xl, 3xl]
+    named_scale_defaults:
+      xs: 8px
+      s: 16px
+      m: 24px
+      l: 32px
+      xl: 48px
+      2xl: 96px
+      3xl: 128px
+    token_range: [--ds-space-xs, --ds-space-3xl]
+    production_variables_required: true
+    structural_properties: [padding, margin, gap, row-gap, column-gap]
+    allowed_authored_values: [zero, auto, ds-space-token, token-derived-calc, token-derived-clamp]
+    raw_nonzero_structural_spacing: hard-fail
+    exception_requires_reason: true
+    catalogue_presentation_source_excluded: true
+    motion_distances_and_transforms: independent-motion-tokens-or-runtime-parameters
+    motion_properties_excluded: [transform, translate, reveal-distance, parallax-speed, parallax-amplitude, scroll-threshold]
+
+  typography:
+    font_source: prefer-input-then-default
+    fallback_families:
+      primary: Inter
+      secondary: Instrument Sans
+    heading_roles_required: 3
+    body_roles_required: 3
+    auxiliary_roles_required: 2
+    primary_size_scale: [small, medium, large]
+    required_role_families:
+      headings: [heading-small, heading-medium, heading-large]
+      body: [body-small, body-medium, body-large]
+      body_bold: [body-small-bold, body-medium-bold, body-large-bold]
+      auxiliary: [label, metadata]
+    body_weight_variants_required: [regular, bold]
+    production_source_default: src/design-system/styles.css
+    single_production_source: true
+    production_tokens_required: true
+    section_local_typography: exception-only
+    design_system_uses_production_roles: true
+    rendering:
+      webkit_font_smoothing: antialiased
+      moz_osx_font_smoothing: grayscale
+      text_rendering: optimizeLegibility
+      font_synthesis: none
+
+  color:
+    content:
+      chromatic_base_roles_max: 3
+      additional_chromatic_roles_max: 2
+      prefer_opacity_for_muted_variants: true
+    section_backgrounds:
+      follow_references: true
+      role_limit: none
+      tokenize_each_role: true
+      reuse_matching_roles: true
+
+  icons:
+    source: prefer-input-then-default
+    fallback_family: Font Awesome
+    fallback_package: "@fortawesome/fontawesome-free"
+    mix_icon_libraries: false
+    regenerate_raster_icons: false
+
+  geometry:
+    radius_scale_required: [small, medium, large]
+
+design_system:
+  route: /_design-system
+  starter_root: instructions/reference/design-system-starter/src/design-system
+  starter_preview: instructions/reference/design-system-starter/index.html
+  bootstrap: copy-once-then-project-owned
+  source_root_default: src/design-system
+  entrypoint_default: src/design-system/index.jsx
+  gallery_source_default: src/design-system/Gallery.jsx
+  tokens_source_default: src/design-system/styles.css
+  layout_source_default: src/design-system/styles.css
+  typography_source_default: src/design-system/styles.css
+  catalogue_import: project-owned-gallery-only
+  catalogue_section_header: single-concrete-title
+  catalogue_section_navigation_label: exact-match
+  catalogue_section_eyebrow: none
+  catalogue_section_intro: none
+  catalogue_basic_includes: [font-families, icon-family]
+  catalogue_spacing_and_sizes_includes: [grid, spacing, control-heights, radii]
+  catalogue_specimen_layout: separated-rows
+  catalogue_specimen_meta: marker-and-name-first
+  catalogue_specimen_live: second
+  catalogue_responsive_order: preserve-meta-then-live
+  catalogue_axis_label: when-applicable
+  catalogue_inner_panels: none-except-documented-surface-specimen
+  single_production_source: true
+  use_production_components: true
+  use_production_typography_roles: true
+  duplicate_specimen_styles: false
+  catalogue_only_component_styles: false
+  initial_component_candidates: [button, text-link, navigation-link, icon-button, field]
+  required_button_sizes: [small, medium, large]
+  required_radius_sizes: [small, medium, large]
+  required_grid_modes: [desktop, tablet, mobile]
+  create_candidates_only_when_used: true
+  promote_visual_compositions_on_cross_section_repeat_only: true
+  within_section_repeat_is_not_reuse_proof: true
+  reference_driven_local_by_default: [card, panel, media-treatment, cta-composition, decorative-composition]
+  show_grid_overlay: true
+  audit:
+    enabled: true
+    scope: core-only
+    guide: instructions/docs/DESIGN_SYSTEM_AUDIT.md
+    primitive: instructions/primitives/design-system/design-system-audit.js
+    production_routes: detect
+    catalogue_route: /_design-system
+    integration_widths: [1440]
+    final_widths: [1440, 390]
+    report: .site-builder/design-system-audit.json
+    settle_timeout_ms: 5000
+    settle_frames: 2
+    await_images: true
+    await_finite_animations: true
+    contract_source: project-owned-entrypoint
+    require_contract: true
+    fail_on_incomplete_contract: true
+    fail_on_missing_token_specimen: true
+    fail_on_duplicate_token_specimen: true
+    fail_on_unmarked_controls: true
+    fail_on_unmarked_links: false
+    fail_on_unmarked_button_like_links: true
+    fail_on_unmarked_editorial_type: true
+    fail_on_missing_catalogue_variant: true
+    fail_on_computed_style_drift: true
+    grid_geometry_gate_required: true
+    grid_geometry_tolerance: 1px
+    grid_source_numbers_may_exist_only_in_layout_source: true
+    grid_consumers_required: [Container, PageGrid, GridOverlay]
+    grid_breakpoint_edge_checks_required: true
+
+assets:
+  provided_asset_default: reuse
+  screenshot_only_photography_default: regenerate
+  screenshot_crop_allowed: false
+  output_dpr: 2
+  opaque_photo_format: webp
+  transparent_asset_format: webp-or-png
+  rasterize_text_or_ui: false
+  regenerate_icons: false
+  preserve_canonical_brand_assets: true
+
+responsive:
+  infer_when_mobile_reference_missing: true
+  minimum_checked_width: 320
+  allow_horizontal_page_scroll: false
+  recompose_media_on_small_screens: true
+
+interaction:
+  required_states: [hover, focus-visible, active]
+  disabled_when_applicable: true
+  minimum_touch_target: 44px
+  layout_shift_on_state_change: false
+  motion_scope: heading-reveal-content-slide-media-parallax-and-interaction-states
+  reduced_motion: true
+  floating_navigation:
+    backdrop_blur: 40px
+    animate_backdrop_blur: false
+    inherit_surface_shape_and_geometry: true
+
+workflow:
+  project_state_root: .site-builder
+  approval_cadence: final
+  process_numbered_references_automatically: true
+  integration_check_every_sections: 2
+  design_system_sync_each_section: true
+  reference_fidelity_required_each_section: true
+  reference_fidelity_evidence: .site-builder/reference-fidelity.md
+  design_system_audit_cannot_override_fidelity_failure: true
+
+delivery:
+  acceptance: visual-and-technical-review
+  cms: none-unless-requested

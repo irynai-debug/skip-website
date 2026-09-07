@@ -1,0 +1,8 @@
+Работай в этой папке проекта.
+
+Полностью прочитай корневой AGENTS.md, затем instructions/README.md и instructions/AGENTS.md. Рекурсивно проинвентаризируй весь input/ и собери сайт по всем инструкциям. Не изменяй instructions/ и input/.
+
+Видимый текст не переписывай. До первого блока создай project-owned копию code-first design system и используй ее как единственный production source. Для каждой секции сначала пройди reference-fidelity gate и сохрани evidence. После каждых двух секций и перед финалом запусти обязательный design-system audit с project-owned DS_CONTRACT. Motion переноси из code-reference, а не интерпретируй заново по описанию.
+
+Продолжай по всей очереди референсов без остановок, пока сайт, responsive, motion, live /_design-system и оба QA-gate не будут завершены либо не возникнет настоящий блокер.
+

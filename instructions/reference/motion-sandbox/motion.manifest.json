@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "required": true,
+  "source": "instructions/reference/motion-sandbox/source",
+  "implementationPolicy": "exact-port",
+  "tokens": {
+    "headingDurationMs": 900,
+    "headingEasing": "cubic-bezier(.215, .61, .355, 1)",
+    "lineStaggerMs": 150,
+    "supportDelayMs": 100,
+    "parallaxSpeed": 0.05,
+    "parallaxScale": 1.08,
+    "heroGraphicsParallaxSpeed": 0.04,
+    "heroGraphicsParallaxDistancePx": 24,
+    "navRevealUpDistance": 56,
+    "navHideDownDistance": 24,
+    "startupPaintFrames": 2,
+    "startupTransitionClass": "motion-animate",
+    "startupAfterPageLoad": true
+  },
+  "hero": {
+    "selector": ".hero",
+    "opening": true,
+    "coverMode": true,
+    "visualEntrance": "accepted-source",
+    "graphicsParallax": {
+      "enabled": true,
+      "rootSelector": "[data-motion-hero-parallax]",
+      "anchorSelector": "[data-motion-hero-parallax-anchor]",
+      "layerSelector": "[data-motion-hero-graphic]",
+      "layerCount": 3,
+      "layers": [".hero__arc", ".hero__dots", ".hero__musician-layer"],
+      "layerRoles": ["arc", "dots", "primary-media"],
+      "staticSelectors": [".hero", ".hero__scene", ".hero__content", ".hero__copy", ".hero__round-link", ".hero__stat", ".site-header"],
+      "staticRoles": ["root", "background", "content-wrapper", "title-copy", "cta", "stat", "navigation"],
+      "driver": "scrollY",
+      "origin": "anchor",
+      "axis": "y",
+      "direction": "with-scroll",
+      "speed": 0.04,
+      "minimumTravelPx": 0,
+      "maximumTravelPx": 24,
+      "cssVariable": "--hero-graphics-y",
+      "rafLoop": "shared-parallax",
+      "transformTransition": "none",
+      "smoothing": "none",
+      "disableAtOrBelowPx": 640,
+      "reducedMotion": "static"
+    }
+  },
+  "navigation": {
+    "selector": ".site-header",
+    "boundary": "#festivals",
+    "mode": "hero-dormant-hidden-compact",
+    "backdropBlur": "40px"
+  },
+  "sections": [
+    {
+      "selector": ".mission",
+      "heading": true,
+      "slides": [
+        {
+          "selector": ".mission__body",
+          "type": "copy"
+        }
+      ]
+    },
+    {
+      "selector": ".statistics",
+      "heading": true,
+      "slides": [
+        {
+          "selector": ".statistics__copy > p:last-child",
+          "type": "copy"
+        },
+        {
+          "selector": ".stats-grid",
+          "type": "block"
+        }
+      ]
+    }
+  ],
+  "parallax": [
+    {
+      "selector": ".statistics__media",
+      "enabled": true,
+      "variant": "standard",
+      "speed": 0.05,
+      "scale": 1.08
+    }
+  ],
+  "microinteractions": [
+    {
+      "selector": ".site-header__cta",
+      "type": "label-swap"
+    }
+  ],
+  "notApplicable": []
+}

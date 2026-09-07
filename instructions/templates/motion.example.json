@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "required": true,
+  "source": "instructions/reference/motion-sandbox/source",
+  "implementationPolicy": "exact-port",
+  "tokens": {
+    "headingDurationMs": 900,
+    "headingEasing": "cubic-bezier(.215, .61, .355, 1)",
+    "lineStaggerMs": 150,
+    "supportDelayMs": 100,
+    "supportBlockDelayMs": 160,
+    "parallaxSpeed": 0.05,
+    "parallaxScale": 1.08,
+    "heroGraphicsParallaxSpeed": 0.04,
+    "heroGraphicsParallaxDistancePx": 24,
+    "navRevealUpDistance": 56,
+    "navHideDownDistance": 24,
+    "navDirectionNoise": 0.5,
+    "navHeroReturnClearance": 96,
+    "sectionObserverRootMargin": "0px 0px -12% 0px",
+    "sectionObserverThreshold": 0.04,
+    "startupPaintFrames": 2,
+    "startupTransitionClass": "motion-animate",
+    "startupAfterPageLoad": true
+  },
+  "hero": {
+    "selector": "REPLACE_WITH_HERO_SELECTOR",
+    "opening": true,
+    "coverMode": true,
+    "visualEntrance": "opacity-only",
+    "graphicsParallax": {
+      "enabled": true,
+      "rootSelector": "[data-motion-hero-parallax]",
+      "anchorSelector": "[data-motion-hero-parallax-anchor]",
+      "layerSelector": "[data-motion-hero-graphic]",
+      "layerCount": 3,
+      "layers": ["REPLACE_WITH_HERO_GRAPHIC_SELECTOR_1", "REPLACE_WITH_HERO_GRAPHIC_SELECTOR_2", "REPLACE_WITH_HERO_GRAPHIC_SELECTOR_3"],
+      "layerRoles": ["arc", "dots", "primary-media"],
+      "staticSelectors": ["REPLACE_WITH_HERO_SELECTOR", "REPLACE_WITH_HERO_BACKGROUND_SELECTOR", "REPLACE_WITH_HERO_CONTENT_WRAPPER_SELECTOR", "REPLACE_WITH_HERO_TITLE_COPY_SELECTOR", "REPLACE_WITH_HERO_CTA_SELECTOR", "REPLACE_WITH_HERO_STAT_SELECTOR", "REPLACE_WITH_NAVIGATION_SELECTOR"],
+      "staticRoles": ["root", "background", "content-wrapper", "title-copy", "cta", "stat", "navigation"],
+      "driver": "scrollY",
+      "origin": "anchor",
+      "axis": "y",
+      "direction": "with-scroll",
+      "speed": 0.04,
+      "minimumTravelPx": 0,
+      "maximumTravelPx": 24,
+      "cssVariable": "--hero-graphics-y",
+      "rafLoop": "shared-parallax",
+      "transformTransition": "none",
+      "smoothing": "none",
+      "disableAtOrBelowPx": 640,
+      "reducedMotion": "static"
+    }
+  },
+  "navigation": {
+    "selector": ".site-header",
+    "boundary": "[data-nav-content-start]",
+    "mode": "hero-dormant-hidden-compact",
+    "backdropBlur": "40px"
+  },
+  "sections": [
+    {
+      "selector": "REPLACE_WITH_SECTION_SELECTOR",
+      "heading": true,
+      "slides": [
+        {
+          "selector": "REPLACE_WITH_SUPPORT_SELECTOR",
+          "type": "copy"
+        }
+      ]
+    }
+  ],
+  "parallax": [
+    {
+      "selector": "REPLACE_WITH_MEDIA_SELECTOR",
+      "enabled": true,
+      "variant": "standard",
+      "speed": 0.05,
+      "scale": 1.08
+    }
+  ],
+  "microinteractions": [
+    {
+      "selector": "REPLACE_WITH_PRIMARY_CTA_SELECTOR",
+      "type": "label-swap"
+    }
+  ],
+  "notApplicable": []
+}

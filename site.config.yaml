@@ -1,0 +1,44 @@
+schema_version: 1
+status: ready
+
+project:
+  name: Skip MO/GO
+  routes:
+    homepage: /
+
+references:
+  root: references
+  naming: numbered-section-variants-v1
+  default_dpr: 2
+
+frontend:
+  stack: Next.js 16 App Router + React 19
+  package_manager: pnpm
+  dev_command: pnpm dev
+  build_command: pnpm build
+  browser_support: modern evergreen browsers
+
+design:
+  grid: responsive tokenized grid
+  columns: 12 desktop, 8 tablet, 4 mobile
+  page_margin: 48px desktop, 32px tablet, 16px mobile
+  gutter: 24px desktop/tablet, 16px mobile
+  max_width: 1352px
+  spacing_unit: 8px
+  fonts: local Neue Haas Grotesk Display Pro OTF family
+  functional: Neue Haas Grotesk Display Pro
+  editorial: Neue Haas Grotesk Display Pro
+  icon_source: canonical local SVG assets from input
+  target_viewports: 1647, 1448, 1440, 1024, 768, 390
+  reduced_motion: required and implemented
+
+cms:
+  mode: none
+  provider: none
+  editing_model: code-first
+  preview: local static-export server
+  localization: English source copy only
+
+delivery:
+  target: Next.js static export (GitHub Pages compatible)
+  acceptance: reference fidelity plus responsive, motion, design-system and accessibility gates

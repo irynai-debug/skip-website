@@ -1,0 +1,27 @@
+{
+  "name": "skip-mogo-reference-build",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/sync-dev-qa-assets.mjs",
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build && node scripts/finalize-static-export.mjs",
+    "qa:sync": "node scripts/sync-dev-qa-assets.mjs",
+    "start": "node scripts/serve-static-export.mjs",
+    "preview": "node scripts/serve-static-export.mjs",
+    "test:unit": "node --import ./tests/jsx-loader.mjs --test tests/*.test.mjs",
+    "test": "node --import ./tests/jsx-loader.mjs --test tests/*.test.mjs && next build && node scripts/finalize-static-export.mjs && node scripts/verify-next-export.mjs",
+    "verify": "node --import ./tests/jsx-loader.mjs --test tests/*.test.mjs && next build && node scripts/finalize-static-export.mjs && node scripts/verify-next-export.mjs"
+  },
+  "dependencies": {
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "three": "0.185.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "postcss": "8.5.6"
+  }
+}

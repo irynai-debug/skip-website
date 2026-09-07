@@ -1,0 +1,25 @@
+.ds-gallery { min-height: 100vh; padding: var(--ds-space-l); display: grid; gap: var(--ds-space-l); color: var(--ds-color-ink); background: var(--ds-color-surface-soft); }
+.ds-gallery__intro, .ds-gallery__section { border-radius: var(--ds-radius-large); padding: var(--ds-space-xl); }
+.ds-gallery__intro { min-height: 440px; display: grid; align-content: space-between; gap: var(--ds-space-l); color: var(--primitive-white); background: var(--ds-color-ink); }
+.ds-gallery__intro [data-type-role='body-large'] { max-width: 620px; }
+.ds-gallery__section { display: grid; gap: var(--ds-space-l); background: var(--ds-color-surface); }
+.ds-gallery__section[data-ds-theme='inverse'] { color: var(--primitive-white); background: var(--ds-color-ink); }
+.ds-gallery__rows, .ds-gallery__type-list, .ds-gallery__component-group { display: grid; gap: var(--ds-space-s); }
+.ds-gallery__row { min-height: 64px; border-top: 1px solid var(--ds-color-border); display: grid; grid-template-columns: minmax(220px, 1fr) 1fr 96px; align-items: center; gap: var(--ds-space-m); font-family: ui-monospace, monospace; font-size: 12px; }
+.ds-gallery__row i { width: 80px; height: 40px; border: 1px solid var(--ds-color-border); border-radius: var(--ds-radius-small); background: var(--ds-color-surface-soft); }
+.ds-gallery__type-row { border-top: 1px solid var(--ds-color-border); padding-block: var(--ds-space-m); display: grid; grid-template-columns: 200px minmax(0, 1fr); align-items: baseline; gap: var(--ds-space-m); }
+.ds-gallery__type-row code { font-size: 12px; }
+.ds-gallery__component-group { border-top: 1px solid var(--ds-color-border); padding-block: var(--ds-space-l); }
+.ds-gallery__controls { display: flex; flex-wrap: wrap; align-items: center; gap: var(--ds-space-s); }
+.ds-gallery__header-sample { gap: var(--ds-space-s); }
+.ds-gallery__header-surface { border-radius: var(--ds-radius-medium); padding: var(--ds-space-m); }
+.ds-gallery__header-surface--hero { background: var(--ds-color-ink); }
+.ds-gallery__header-surface--compact { background: var(--ds-color-surface-soft); }
+
+@media (max-width: 820px) {
+  .ds-gallery { padding: var(--ds-space-s); gap: var(--ds-space-s); }
+  .ds-gallery__intro, .ds-gallery__section { min-width: 0; padding: var(--ds-space-m); }
+  .ds-gallery .ds-type, .ds-gallery code { min-width: 0; overflow-wrap: anywhere; }
+  .ds-gallery__row, .ds-gallery__type-row { grid-template-columns: 1fr; align-items: start; gap: var(--ds-space-xs); }
+  .ds-gallery__row { padding-block: var(--ds-space-s); }
+}
