@@ -118,7 +118,7 @@ export const SOCIAL_DESTINATIONS = Object.freeze({
 })
 
 export const HERO_COPY = Object.freeze({
-  navigation: ['PRODUCT', 'HOW IT WORKS', 'TECHNOLOGY', 'FAQ'],
+  navigation: ['How it works', 'Product', 'Testimonials'],
   heading: 'MEET\nNEW\nMO/GO',
   lead: 'Wearable tech for more freedom\nin every step you make.',
   body: 'MO/GO helps you go further, climb higher\nand stay active—so you can keep exploring\nwhat moves you.',

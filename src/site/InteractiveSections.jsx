@@ -30,10 +30,9 @@ import { TechnologyMedia } from '../TechnologyMedia.js'
 import { advanceHowImageDelivery } from '../howImageDelivery.js'
 
 const navTargets = {
-  PRODUCT: '#product',
-  'HOW IT WORKS': '#how-it-works',
-  TECHNOLOGY: '#technology',
-  FAQ: DESTINATIONS.faq,
+  'How it works': '#how-it-works',
+  Product: '#technology',
+  Testimonials: '#testimonial',
 }
 
 const navigation = HERO_COPY.navigation.map((label) => ({ label, href: navTargets[label] }))

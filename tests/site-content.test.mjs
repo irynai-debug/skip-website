@@ -1,8 +1,11 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
+import React from 'react'
+import { renderToStaticMarkup } from 'react-dom/server'
 
 import * as content from '../src/siteContent.js'
+import { Site } from '../src/Site.jsx'
 
 const readInteractiveSource = () => readFile(new URL('../src/site/InteractiveSections.jsx', import.meta.url), 'utf8')
 const readFooterSource = () => readFile(new URL('../src/site/Footer.jsx', import.meta.url), 'utf8')
@@ -27,12 +30,29 @@ test('the hero preserves its exact visible copy and metric order', () => {
   assert.equal(content.HERO_COPY.heading, 'MEET\nNEW\nMO/GO')
   assert.equal(content.HERO_COPY.lead, 'Wearable tech for more freedom\nin every step you make.')
   assert.equal(content.HERO_COPY.body, 'MO/GO helps you go further, climb higher\nand stay active—so you can keep exploring\nwhat moves you.')
-  assert.deepEqual(content.HERO_COPY.navigation, ['PRODUCT', 'HOW IT WORKS', 'TECHNOLOGY', 'FAQ'])
+  assert.deepEqual(content.HERO_COPY.navigation, ['How it works', 'Product', 'Testimonials'])
   assert.deepEqual(content.HERO_METRICS, [
     ['Uphill Support', '+40%'],
     ['Impact Reduction', '-30%'],
     ['Battery Life', '8+ hrs'],
     ['Weight', '1.8 kg'],
+  ])
+})
+
+test('the rendered primary navigation exposes exactly the three requested landing-section links', () => {
+  const markup = renderToStaticMarkup(React.createElement(Site))
+  const navigationMarkup = markup.match(/<nav id="primary-navigation"[^>]*><ul>([\s\S]*?)<\/ul><\/nav>/)
+
+  assert.ok(navigationMarkup, 'primary navigation must be rendered')
+  const links = Array.from(
+    navigationMarkup[1].matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>\s*<span>([^<]+)<\/span>\s*<\/a>/g),
+    ([, href, label]) => ({ label, href }),
+  )
+
+  assert.deepEqual(links, [
+    { label: 'How it works', href: '#how-it-works' },
+    { label: 'Product', href: '#technology' },
+    { label: 'Testimonials', href: '#testimonial' },
   ])
 })
 

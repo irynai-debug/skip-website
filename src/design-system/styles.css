@@ -419,6 +419,11 @@ html {
   --ds-theme-text: var(--ds-color-surface);
 }
 
+@media (min-width: 821px) {
+  .ds-site-header > nav { position: absolute; left: 50%; transform: translateX(-50%); }
+  .ds-site-header__actions { grid-column: 3; }
+}
+
 .ds-button:focus-visible, .ds-link:focus-visible, .ds-icon-button:focus-visible, .ds-icon-link:focus-visible, .ds-site-header__brand:focus-visible { outline: var(--ds-focus-width) solid var(--ds-theme-focus); outline-offset: 3px; }
 .ds-button:disabled, .ds-button[aria-disabled='true'], .ds-icon-button:disabled { opacity: .45; cursor: not-allowed; }
 

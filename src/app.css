@@ -1,5 +1,6 @@
 :root { color: var(--ds-color-ink); background: var(--ds-color-canvas); font-family: var(--ds-font-primary); }
 html { scroll-behavior: smooth; }
+.how, .technology, .testimonial { scroll-margin-top: calc(var(--ds-control-medium) + var(--ds-space-l)); }
 body { min-width: 0; margin: 0; overflow-x: clip; background: var(--ds-color-ink); }
 button, a { color: inherit; }
 img { max-width: 100%; }
