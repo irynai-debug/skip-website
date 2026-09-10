@@ -2,4 +2,4 @@ content:
   - name: pages
     label: Pages
     type: file
-    path: src/sitecontent.js
+    path: src/siteContent.js
