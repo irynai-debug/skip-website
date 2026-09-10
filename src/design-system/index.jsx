@@ -277,16 +277,16 @@ export function MetricRow({ label, value, className = '', valueRole = 'number-sm
   return <div className={cx('ds-metric-row', className)} data-ds-component="metric-row" data-ds-variant="default" data-ds-size="medium" data-ds-state="default"><Type as="span" role="body">{label}</Type><Type as="span" role={valueRole}>{value}</Type></div>
 }
 
-export function SiteHeader({ logo, navigation, basketIcon, state = 'hero', navigationId = 'primary-navigation', menuOpen = false, onMenuToggle, onNavigate, onBasketActivate, onPreorderActivate, preorderHref = '#reserve', preorderTrigger, className = '', ...props }) {
+export function SiteHeader({ logo, navigation, basketIcon, brandLabel = 'Skip home', brandAlt = 'Skip', navigationLabel = 'Primary navigation', basketLabel = 'Pre-order MO/GO', preorderLabel = 'PRE-ORDER', menuOpenLabel = 'MENU', menuCloseLabel = 'CLOSE', state = 'hero', navigationId = 'primary-navigation', menuOpen = false, onMenuToggle, onNavigate, onBasketActivate, onPreorderActivate, preorderHref = '#reserve', preorderTrigger, className = '', ...props }) {
   const variant = state === 'hero' ? 'hero' : 'compact'
   return (
     <header {...props} className={cx('ds-site-header', `ds-site-header--${variant}`, className)} data-ds-component="site-header" data-ds-variant={variant} data-ds-size="medium" data-ds-state="default" data-ds-theme="inverse" data-header-state={state}>
-      <a href="#top" className="ds-site-header__brand" aria-label="Skip home"><img src={logo} alt="Skip" /></a>
-      <nav id={navigationId} aria-label="Primary navigation" data-menu-open={menuOpen}><ul>{navigation.map(({ label, href }) => <li key={label}><Link variant="nav" href={href} onClick={onNavigate}>{label}</Link></li>)}</ul></nav>
+      <a href="#top" className="ds-site-header__brand" aria-label={brandLabel}><img src={logo} alt={brandAlt} /></a>
+      <nav id={navigationId} aria-label={navigationLabel} data-menu-open={menuOpen}><ul>{navigation.map(({ label, href }) => <li key={label}><Link variant="nav" href={href} onClick={onNavigate}>{label}</Link></li>)}</ul></nav>
       <div className="ds-site-header__actions">
-        <IconButton label="Pre-order MO/GO" variant="plain" size="small" onClick={onBasketActivate} icon={<img src={basketIcon} alt="" />} />
-        <Button href={onPreorderActivate ? undefined : preorderHref} onClick={onPreorderActivate} data-preorder-trigger={preorderTrigger} variant="outline" size="small">PRE-ORDER</Button>
-        <Button variant="outline" size="small" className="ds-site-header__menu" onClick={onMenuToggle} aria-expanded={menuOpen} aria-controls={navigationId}>{menuOpen ? 'CLOSE' : 'MENU'}</Button>
+        <IconButton label={basketLabel} variant="plain" size="small" onClick={onBasketActivate} icon={<img src={basketIcon} alt="" />} />
+        <Button href={onPreorderActivate ? undefined : preorderHref} onClick={onPreorderActivate} data-preorder-trigger={preorderTrigger} variant="outline" size="small">{preorderLabel}</Button>
+        <Button variant="outline" size="small" className="ds-site-header__menu" onClick={onMenuToggle} aria-expanded={menuOpen} aria-controls={navigationId}>{menuOpen ? menuCloseLabel : menuOpenLabel}</Button>
       </div>
     </header>
   )

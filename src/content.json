@@ -1,0 +1,161 @@
+{
+  "site": {
+    "skipLink": "Skip to content",
+    "brandName": "Skip",
+    "brandHomeLabel": "Skip home",
+    "metadataTitle": "Skip — MO/GO",
+    "metadataDescription": "Wearable tech for more freedom in every step you make."
+  },
+  "navigation": {
+    "primaryLabel": "Primary navigation",
+    "basketButtonLabel": "Pre-order MO/GO",
+    "menuOpenLabel": "MENU",
+    "menuCloseLabel": "CLOSE",
+    "items": {
+      "howItWorks": "How it works",
+      "product": "Product",
+      "testimonials": "Testimonials"
+    }
+  },
+  "cta": {
+    "preOrder": "PRE-ORDER",
+    "reserveSpot": "RESERVE YOUR SPOT",
+    "seeMogoInAction": "SEE MO/GO IN ACTION",
+    "reserveMogo": "RESERVE YOUR MO/GO"
+  },
+  "hero": {
+    "title": "MEET\nNEW\nMO/GO",
+    "subtitle": "Wearable tech for more freedom\nin every step you make.",
+    "description": "MO/GO helps you go further, climb higher\nand stay active—so you can keep exploring\nwhat moves you.",
+    "metrics": [
+      { "label": "Uphill Support", "value": "+40%" },
+      { "label": "Impact Reduction", "value": "-30%" },
+      { "label": "Battery Life", "value": "8+ hrs" },
+      { "label": "Weight", "value": "1.8 kg" }
+    ],
+    "outcomes": [
+      { "label": "REDUCTION IN\nLEG STRAIN", "value": "30%" },
+      { "label": "MORE ENDURANCE\nON EVERY HIKE", "value": "2.5x" }
+    ]
+  },
+  "howItWorks": {
+    "title": "HOW IT\nWORKS",
+    "description": "Getting started with MO/GO is simple.\nFour steps to more freedom in every step.",
+    "imageAltPrefix": "MO/GO How It Works step",
+    "callouts": [
+      "Power in motion",
+      "Adaptive\nsupport",
+      "Built to\nmove"
+    ],
+    "steps": [
+      { "number": "01", "title": "Take the first step", "description": "Tell us about your goals and how you move." },
+      { "number": "02", "title": "Find your fit", "description": "We recommend the right MO/GO system for you." },
+      { "number": "03", "title": "Get set up", "description": "Receive your system and set it up with guidance." },
+      { "number": "04", "title": "Move with confidence", "description": "Wear, adapt, and go further with every step." }
+    ]
+  },
+  "technology": {
+    "sectionTitle": "MO/GO technology",
+    "productDescription": "MO/GO powered wearable support system",
+    "viewerLabel": "Interactive 3D model of the MO/GO powered wearable support system. Drag or use arrow keys to rotate.",
+    "features": [
+      { "number": "01", "title": "SENSES MOVEMENT", "description": "Advanced sensors detect\nyour movement and terrain\nin real time." },
+      { "number": "02", "title": "ADAPTS INSTANTLY", "description": "Smart algorithms adjust\nsupport to your pace,\nstride, and activity." },
+      { "number": "03", "title": "NATURAL SUPPORT", "description": "Works with your body\n— not against it." },
+      { "number": "04", "title": "PROVIDES ASSIST", "description": "Targeted power delivers\nextra boost when you need\nit most." },
+      { "number": "05", "title": "LIGHTWEIGHT DESIGN", "description": "Built with premium materials\nto keep you moving freely\nwithout extra weight." },
+      { "number": "06", "title": "BUILT TO ENDURE", "description": "Long-lasting performance\nso you can go further\nwith less fatigue." }
+    ]
+  },
+  "testimonials": {
+    "sectionTitle": "Testimonials",
+    "statusTemplate": "Testimonial {current} of {total}: {name}",
+    "previousButtonLabel": "Previous testimonial",
+    "nextButtonLabel": "Next testimonial",
+    "items": [
+      {
+        "name": "DANIEL R.",
+        "role": "HIKER & TRAVELER",
+        "quote": "I can hike longer,\nclimb higher and explore\nmore with less strain.",
+        "description": "MO/GO gives me the support I need to stay\nactive and keep doing what I love.",
+        "imageAlt": "Daniel, a hiker and traveler, in the mountains"
+      },
+      {
+        "name": "MAYA L.",
+        "role": "TRAIL RUNNER & EXPLORER",
+        "quote": "I move with more confidence,\ncover more ground and still have\nenergy left.",
+        "description": "MO/GO adapts naturally to my movement, so every\ntrail feels easier and more enjoyable.",
+        "imageAlt": "Maya, a trail runner and explorer, on a green hillside"
+      },
+      {
+        "name": "MICHAEL T.",
+        "role": "HIKER & PHOTOGRAPHER",
+        "quote": "Steep climbs feel smoother,\nlonger walks feel lighter and I\ncan keep going.",
+        "description": "MO/GO helps reduce the effort of each step without\nchanging how I naturally move.",
+        "imageAlt": "Michael, a hiker and photographer, on a rocky trail"
+      }
+    ]
+  },
+  "footer": {
+    "title": "READY TO MOVE\nFURTHER?",
+    "description": "Reserve your MO/GO and\ndiscover what’s possible.",
+    "copyright": "© 2025 Skip. All rights reserved.",
+    "navigationLabel": "Footer navigation",
+    "socialMediaLabel": "Social media",
+    "groups": [
+      {
+        "title": "PRODUCT",
+        "links": ["MO/GO Overview", "Key Features", "Product Design", "Tech Specifications", "Pre-Order"]
+      },
+      {
+        "title": "COMPANY",
+        "links": ["Our Mission", "About Skip", "Careers", "News & Press", "Contact Us"]
+      },
+      {
+        "title": "RESOURCES",
+        "links": ["How It Works", "Technology", "User Stories", "FAQs"]
+      }
+    ],
+    "socialLinks": {
+      "instagram": "Instagram",
+      "youtube": "YouTube",
+      "linkedin": "LinkedIn",
+      "x": "X"
+    }
+  },
+  "cookieConsent": {
+    "title": "Cookies, your choice",
+    "description": "We use cookies to improve your experience and understand how our site is used.",
+    "acceptButton": "ACCEPT",
+    "declineButton": "DECLINE"
+  },
+  "preOrderModal": {
+    "title": "TAKE THE\nNEXT STEP",
+    "description": "Reserve your MO/GO and be the first to\nexperience the future of movement.",
+    "closeButtonLabel": "Close pre-order form",
+    "fields": {
+      "firstName": {
+        "label": "FIRST NAME",
+        "requiredError": "Enter your first name."
+      },
+      "lastName": {
+        "label": "LAST NAME",
+        "requiredError": "Enter your last name."
+      },
+      "email": {
+        "label": "EMAIL ADDRESS",
+        "requiredError": "Enter your email address.",
+        "invalidError": "Enter a valid email address."
+      },
+      "country": {
+        "label": "COUNTRY / REGION",
+        "placeholder": "Select a country or region",
+        "requiredError": "Select a country or region."
+      }
+    }
+  },
+  "notFound": {
+    "title": "Page not found",
+    "returnHomeButton": "Return home"
+  }
+}

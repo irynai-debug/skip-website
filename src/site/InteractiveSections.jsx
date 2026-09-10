@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+import content from '../content.json' with { type: 'json' }
 import {
   Button,
   Container,
@@ -29,13 +30,9 @@ import { HERO_LAYER_INITIAL_STATE, createTestimonialCarouselController, getCompl
 import { TechnologyMedia } from '../TechnologyMedia.js'
 import { advanceHowImageDelivery } from '../howImageDelivery.js'
 
-const navTargets = {
-  'How it works': '#how-it-works',
-  Product: '#technology',
-  Testimonials: '#testimonial',
-}
+const navTargets = ['#how-it-works', '#technology', '#testimonial']
 
-const navigation = HERO_COPY.navigation.map((label) => ({ label, href: navTargets[label] }))
+const navigation = HERO_COPY.navigation.map((label, index) => ({ label, href: navTargets[index] }))
 const HERO_DEPTH_LAYERS = Object.freeze({
   sky: Object.freeze({ x: 16, y: 8 }),
   foreground: Object.freeze({ x: 3, y: 2 }),
@@ -80,6 +77,13 @@ export function Header() {
         logo={ASSETS.logo}
         basketIcon={ASSETS.basket}
         navigation={navigation}
+        brandLabel={content.site.brandHomeLabel}
+        brandAlt={content.site.brandName}
+        navigationLabel={content.navigation.primaryLabel}
+        basketLabel={content.navigation.basketButtonLabel}
+        preorderLabel={content.cta.preOrder}
+        menuOpenLabel={content.navigation.menuOpenLabel}
+        menuCloseLabel={content.navigation.menuCloseLabel}
         state={compact ? 'compact' : 'hero'}
         menuOpen={open}
         onMenuToggle={() => setOpen((current) => !current)}
@@ -300,7 +304,7 @@ export function HowItWorks() {
                 sizes={shouldDeliverImage ? asset.sizes : undefined}
                 width={asset.width}
                 height={asset.height}
-                alt={imageState === 'active' ? `MO/GO How It Works step ${HOW_IT_WORKS_STEPS[index].number}` : ''}
+                alt={imageState === 'active' ? `${content.howItWorks.imageAltPrefix} ${HOW_IT_WORKS_STEPS[index].number}` : ''}
                 aria-hidden={imageState === 'active' ? undefined : true}
                 loading="lazy"
                 decoding="async"
@@ -332,15 +336,15 @@ export function HowItWorks() {
 }
 
 function TechnologyFeature({ feature, index }) {
-  const connectors = {
-    '01': { path: 'M0 28 H118 L190 86 H220', dot: [220, 86] },
-    '02': { path: 'M0 52 H220', dot: [220, 52] },
-    '03': { path: 'M0 44 H124 L188 18 H220', dot: [220, 18] },
-    '04': { path: 'M220 28 H102 L30 86 H0', dot: [0, 86] },
-    '05': { path: 'M220 42 H112 L34 66 H0', dot: [0, 66] },
-    '06': { path: 'M220 38 H116 L38 -25 H0', dot: [0, -25] },
-  }
-  const connector = connectors[feature.number]
+  const connectors = [
+    { path: 'M0 28 H118 L190 86 H220', dot: [220, 86] },
+    { path: 'M0 52 H220', dot: [220, 52] },
+    { path: 'M0 44 H124 L188 18 H220', dot: [220, 18] },
+    { path: 'M220 28 H102 L30 86 H0', dot: [0, 86] },
+    { path: 'M220 42 H112 L34 66 H0', dot: [0, 66] },
+    { path: 'M220 38 H116 L38 -25 H0', dot: [0, -25] },
+  ]
+  const connector = connectors[index]
   const timing = getTechnologyFeatureRevealTiming(index)
   return (
     <li
@@ -373,7 +377,7 @@ export function Technology() {
 
   return (
     <section ref={sectionRef} className="technology" id="technology" data-ds-theme="inverse" data-motion-section data-technology-depth="static" data-model-interacting="false" aria-labelledby="technology-title">
-      <h2 className="ds-sr-only" id="technology-title" data-motion-static>MO/GO technology</h2>
+      <h2 className="ds-sr-only" id="technology-title" data-motion-static>{content.technology.sectionTitle}</h2>
       <Container className="technology__stage">
         <ul className="technology__features technology__features--left">{left.map(({ feature, index }) => <TechnologyFeature feature={feature} index={index} key={feature.number} />)}</ul>
         <TechnologyMedia modelSrc={ASSETS.technologyModel} poster={ASSETS.technology} />
@@ -431,7 +435,7 @@ export function Testimonial() {
       aria-labelledby="testimonial-title"
       aria-roledescription="carousel"
     >
-      <Type as="h2" role="label" id="testimonial-title" className="ds-sr-only" data-motion-static>Testimonials</Type>
+      <Type as="h2" role="label" id="testimonial-title" className="ds-sr-only" data-motion-static>{content.testimonials.sectionTitle}</Type>
       <PageGrid className="testimonial__grid">
         <div className="testimonial__identity">
           {TESTIMONIALS.map((item, index) => {
@@ -454,11 +458,14 @@ export function Testimonial() {
                 <div className="testimonial__support" data-testimonial-entrance="support"><Type role="body-large" data-ds-exempt="Reference-specific testimonial secondary color"><LineText text={item.body} /></Type></div>
               </div>
             })}
-            <Type as="span" role="label" className="ds-sr-only">Testimonial {activeIndex + 1} of {TESTIMONIALS.length}: {testimonial.name}</Type>
+            <Type as="span" role="label" className="ds-sr-only">{content.testimonials.statusTemplate
+              .replace('{current}', String(activeIndex + 1))
+              .replace('{total}', String(TESTIMONIALS.length))
+              .replace('{name}', testimonial.name)}</Type>
           </div>
           <div className="testimonial__arrows" data-testimonial-entrance="navigation">
-            <IconButton label="Previous testimonial" variant="outline-ink" glyphSize="large" iconSource={ASSETS.arrowLeft} aria-controls="testimonial-slides" onClick={() => changeTestimonial(-1)} />
-            <IconButton label="Next testimonial" variant="outline-ink" glyphSize="large" iconSource={ASSETS.arrowRight} aria-controls="testimonial-slides" onClick={() => changeTestimonial(1)} />
+            <IconButton label={content.testimonials.previousButtonLabel} variant="outline-ink" glyphSize="large" iconSource={ASSETS.arrowLeft} aria-controls="testimonial-slides" onClick={() => changeTestimonial(-1)} />
+            <IconButton label={content.testimonials.nextButtonLabel} variant="outline-ink" glyphSize="large" iconSource={ASSETS.arrowRight} aria-controls="testimonial-slides" onClick={() => changeTestimonial(1)} />
           </div>
         </div>
       </PageGrid>
