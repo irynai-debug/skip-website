@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
-import content from './content.json' with { type: 'json' }
+import content from './generated/content.json' with { type: 'json' }
 import { advanceRotationInertia, applyDragRotation } from './technologyModelInteraction.js'
 
 export function TechnologyModelViewer({ modelSrc, onError, onReady }) {

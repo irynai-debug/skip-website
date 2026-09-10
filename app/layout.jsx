@@ -1,5 +1,5 @@
 import React from 'react'
-import content from '../src/content.json' with { type: 'json' }
+import content from '../src/generated/content.json' with { type: 'json' }
 import '../src/design-system/styles.css'
 import '../src/app.css'
 import '../src/motion.css'

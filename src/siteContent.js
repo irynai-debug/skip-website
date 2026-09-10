@@ -1,5 +1,5 @@
 import { assetPath } from './assetPath.js'
-import content from './content.json' with { type: 'json' }
+import content from './generated/content.json' with { type: 'json' }
 
 export const SITE_SECTIONS = Object.freeze([
   { id: 'hero', reference: '1.png' },
@@ -34,6 +34,25 @@ const responsiveAsset = ({ stem, widths, width, height, sizes, densityBase }) =>
 export const resolveEditableImageAsset = (imagePath, optimizedAsset) => {
   const src = assetPath(imagePath)
   if (!src || src === optimizedAsset.src) return optimizedAsset
+
+  if (/^https:\/\/cdn\.sanity\.io\/images\//i.test(src) && optimizedAsset.sources) {
+    const sources = Object.freeze(optimizedAsset.sources.map(({ width }) => {
+      const url = new URL(src)
+      url.searchParams.set('w', String(width))
+      url.searchParams.set('fit', 'max')
+
+      return Object.freeze({ src: url.toString(), width })
+    }))
+
+    return Object.freeze({
+      src: sources.at(-1).src,
+      sources,
+      srcSet: sources.map(({ src: candidateSrc, width }) => `${candidateSrc} ${width}w`).join(', '),
+      sizes: optimizedAsset.sizes,
+      width: optimizedAsset.width,
+      height: optimizedAsset.height,
+    })
+  }
 
   return Object.freeze({
     src,

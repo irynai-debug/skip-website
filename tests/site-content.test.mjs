@@ -88,13 +88,12 @@ test('the technology model preserves its six features and exact em dash', () => 
 })
 
 test('the testimonial carousel preserves all three exact content states', () => {
-  assert.deepEqual(content.TESTIMONIALS, [
+  assert.deepEqual(content.TESTIMONIALS.map(({ image, ...item }) => item), [
     {
       name: 'DANIEL R.',
       role: 'HIKER & TRAVELER',
       quote: 'I can hike longer,\nclimb higher and explore\nmore with less strain.',
       body: 'MO/GO gives me the support I need to stay\nactive and keep doing what I love.',
-      image: content.ASSETS.testimonials.daniel,
       alt: 'Daniel, a hiker and traveler, in the mountains',
     },
     {
@@ -102,7 +101,6 @@ test('the testimonial carousel preserves all three exact content states', () => 
       role: 'TRAIL RUNNER & EXPLORER',
       quote: 'I move with more confidence,\ncover more ground and still have\nenergy left.',
       body: 'MO/GO adapts naturally to my movement, so every\ntrail feels easier and more enjoyable.',
-      image: content.ASSETS.testimonials.maya,
       alt: 'Maya, a trail runner and explorer, on a green hillside',
     },
     {
@@ -110,10 +108,14 @@ test('the testimonial carousel preserves all three exact content states', () => 
       role: 'HIKER & PHOTOGRAPHER',
       quote: 'Steep climbs feel smoother,\nlonger walks feel lighter and I\ncan keep going.',
       body: 'MO/GO helps reduce the effort of each step without\nchanging how I naturally move.',
-      image: content.ASSETS.testimonials.michael,
       alt: 'Michael, a hiker and photographer, on a rocky trail',
     },
   ])
+  content.TESTIMONIALS.forEach(({ image }) => {
+    assert.deepEqual(image.sources.map(({ width }) => width), [192, 384])
+    assert.equal(image.srcSet, image.sources.map(({ src, width }) => `${src} ${width}w`).join(', '))
+    assert.equal(image.sizes, '(max-width: 480px) 96px, (max-width: 820px) 128px, 176px')
+  })
   assert.equal(content.getAdjacentTestimonialIndex(0, -1), 2)
   assert.equal(content.getAdjacentTestimonialIndex(0, 1), 1)
   assert.equal(content.getAdjacentTestimonialIndex(2, 1), 0)
@@ -140,9 +142,18 @@ test('project-owned production rasters resolve to explicit optimized assets', ()
   ])
 })
 
-test('CMS image paths preserve current responsive assets and safely replace them after upload', async () => {
-  assert.equal(content.TECHNOLOGY_POSTER, content.ASSETS.technology)
-  assert.deepEqual(content.TESTIMONIALS.map(({ image }) => image), Object.values(content.ASSETS.testimonials))
+test('CMS image paths preserve responsive delivery and safely replace non-Sanity paths', async () => {
+  assert.deepEqual(
+    content.TECHNOLOGY_POSTER.sources.map(({ width }) => width),
+    content.ASSETS.technology.sources.map(({ width }) => width),
+  )
+  assert.equal(
+    content.TECHNOLOGY_POSTER.srcSet,
+    content.TECHNOLOGY_POSTER.sources.map(({ src, width }) => `${src} ${width}w`).join(', '),
+  )
+  assert.equal(content.TECHNOLOGY_POSTER.sizes, content.ASSETS.technology.sizes)
+  assert.equal(content.TECHNOLOGY_POSTER.width, content.ASSETS.technology.width)
+  assert.equal(content.TECHNOLOGY_POSTER.height, content.ASSETS.technology.height)
 
   const replacement = content.resolveEditableImageAsset(
     '/uploads/testimonials/new-portrait.webp',

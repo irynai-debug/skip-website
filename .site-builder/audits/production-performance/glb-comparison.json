@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "source": {
+    "path": "public/assets/skip/mogo-device.glb",
+    "bytes": 13429772,
+    "sha256": "1a7fe9efa005ce6c1c02cabce63637becbfe3848385c97f5c711d802c45dbdf4",
+    "modified": false
+  },
+  "candidate": {
+    "path": "public/assets/skip/mogo-device.meshopt.glb",
+    "bytes": 9611028,
+    "sha256": "1468b9bfe3f03b18da7d9117b09f0e767f3c4e35e7aeb63133525cfc468e755d",
+    "reductionPercent": 28.44,
+    "compression": "EXT_meshopt_compression",
+    "quantization": false,
+    "simplification": false,
+    "gltfpackOptions": ["-c", "-noq", "-kn", "-km", "-kv", "-af", "0"]
+  },
+  "structure": {
+    "meshes": 1,
+    "materials": 1,
+    "images": 3,
+    "triangles": 200546,
+    "vertices": 113366,
+    "textureBytes": 5579624
+  },
+  "visualComparison": {
+    "files": {
+      "original": ".site-builder/captures/production-performance/glb-original-viewport.jpg",
+      "candidate": ".site-builder/captures/production-performance/glb-candidate-viewport.jpg",
+      "diff": ".site-builder/captures/production-performance/glb-visual-diff.png"
+    },
+    "sha256": {
+      "original": "7f61a1ba79bdda612fd4a09a1a0f9ff75d98d13cbdd7209f514d6f50b2a30ba1",
+      "candidate": "f2960bb3776eb2e4b771fa53fb9e6c49b3c3d641ad0741aba3f3049c32a15b54",
+      "diff": "eea642c1c1de701c42fb3cc79459f1ce19a04c75133d54208355d9ef7c5e2cf8"
+    },
+    "changedPixels": 111,
+    "totalPixels": 900680,
+    "rmsPixelDifference": 0.04,
+    "result": "visually equivalent"
+  },
+  "interactionVerification": {
+    "horizontalRotationDegrees": 368,
+    "verticalMinimumDegrees": -20,
+    "verticalMaximumDegrees": 20,
+    "posterFallbackPreserved": true,
+    "layoutChanged": false
+  },
+  "productionDecision": "candidate selected"
+}

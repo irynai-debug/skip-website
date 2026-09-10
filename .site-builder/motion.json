@@ -1,0 +1,188 @@
+{
+  "schemaVersion": 2,
+  "required": true,
+  "source": "instructions/reference/motion-sandbox/source",
+  "implementationPolicy": "user-directed-motion-pass",
+  "capabilities": {
+    "pointerDepth": "(hover: hover) and (pointer: fine)",
+    "coarseOrTouch": ["(hover: none)", "(pointer: coarse)"],
+    "reducedMotion": "(prefers-reduced-motion: reduce)"
+  },
+  "reducedMotion": {
+    "presentation": "immediate-static",
+    "entrances": "settled-visible",
+    "pointerDepth": "static",
+    "connectors": "drawn",
+    "counters": "final-value",
+    "howItWorks": "static-step-01",
+    "testimonialNavigation": "manual-instant",
+    "technology": "viewer-or-poster-functional",
+    "controls": ["header-menu", "preorder-modal", "cookie-consent"]
+  },
+  "tokens": {
+    "headingDurationMs": 800,
+    "headingEasing": "cubic-bezier(0.22, 1, 0.36, 1)",
+    "lineStaggerMs": 150,
+    "supportDelayMs": 100,
+    "supportBlockDelayMs": 160,
+    "parallaxSpeed": 0.05,
+    "parallaxScale": 1.08,
+    "heroGraphicsParallaxSpeed": 0.04,
+    "heroGraphicsParallaxDistancePx": 24,
+    "navRevealUpDistance": 56,
+    "navHideDownDistance": 24,
+    "navDirectionNoise": 0.5,
+    "navHeroReturnClearance": 96,
+    "sectionObserverRootMargin": "0px 0px -12% 0px",
+    "sectionObserverThreshold": 0.04,
+    "startupPaintFrames": 2,
+    "startupTransitionClass": "motion-animate",
+    "startupAfterPageLoad": true
+  },
+  "hero": {
+    "selector": ".hero",
+    "opening": true,
+    "coverMode": true,
+    "visualEntrance": "opacity-only",
+    "graphicsParallax": {
+      "enabled": true,
+      "rootSelector": "[data-motion-hero-parallax]",
+      "anchorSelector": "[data-motion-hero-parallax-anchor]",
+      "layerSelector": "[data-motion-hero-graphic]",
+      "layerCount": 3,
+      "layers": [".hero__scene-glow", ".hero__scene-vignette", ".hero__background"],
+      "layerRoles": ["arc", "dots", "primary-media"],
+      "staticSelectors": [".hero", ".hero__scene", ".hero__grid", ".hero__copy", ".hero__lower-copy .ds-button", ".hero__outcomes", ".site-header"],
+      "staticRoles": ["root", "background", "content-wrapper", "title-copy", "cta", "stat", "navigation"],
+      "driver": "scrollY",
+      "origin": "anchor",
+      "axis": "y",
+      "direction": "with-scroll",
+      "speed": 0.04,
+      "minimumTravelPx": 0,
+      "maximumTravelPx": 24,
+      "cssVariable": "--hero-graphics-y",
+      "rafLoop": "shared-parallax",
+      "transformTransition": "none",
+      "smoothing": "none",
+      "disableAtOrBelowPx": 640,
+      "reducedMotion": "static"
+    },
+    "depth": {
+      "delivery": "atomic-pair-with-flattened-fallback",
+      "pointer": "fine-only",
+      "layers": [
+        { "selector": ".hero__depth-layer--sky", "maximumX": 16, "maximumY": 8, "scale": 1.03 },
+        { "selector": ".hero__depth-layer--foreground", "maximumX": 3, "maximumY": 2, "scale": 1 }
+      ],
+      "reducedMotion": "static"
+    },
+    "entrance": {
+      "once": true,
+      "durationMs": 800,
+      "groups": ["heading", "support", "specs", "lower-left", "outcomes"],
+      "delayMs": [0, 90, 180, 270, 360],
+      "specificationRowCount": 4,
+      "specificationRowStaggerMs": 90
+    },
+    "counters": { "once": true, "durationMs": 1350, "easing": "easeInOutSine", "values": ["30%", "2.5x"], "stableWidth": true, "synchronized": true, "starts": "after-outcomes-reveal" }
+  },
+  "navigation": {
+    "selector": ".site-header",
+    "boundary": "[data-nav-content-start]",
+    "mode": "hero-dormant-hidden-compact",
+    "compactSurfaceSelector": "[data-header-state='compact']",
+    "compactGeometry": "full-width-shell-constrained-inner",
+    "compactBackdropFilter": "none",
+    "dormantVisibility": "hidden"
+  },
+  "sections": [],
+  "parallax": [
+    { "selector": ".how__media", "enabled": true, "variant": "standard", "speed": 0.05, "scale": 1.08 }
+  ],
+  "howItWorks": {
+    "selector": ".how",
+    "stepSelector": ".how-step",
+    "imageSelector": ".how__image",
+    "progressSelector": ".how-step__progress-value",
+    "durationMs": 4200,
+    "imageTransitionMs": 700,
+    "activeToken": "--ds-color-action-active",
+    "observerThreshold": 0.2,
+    "sequence": ["01", "02", "03", "04"],
+    "loop": true,
+    "viewport": "pause-resume-without-reset",
+    "reducedMotion": "static-step-01",
+    "entrance": {
+      "media": { "selector": ".how__media[data-how-entrance=\"media\"]", "direction": "down", "durationMs": 750, "delayMs": 0 },
+      "heading": { "selector": ".how [data-how-entrance=\"heading\"]", "durationMs": 800, "delayMs": 0, "coherent": true },
+      "support": { "selector": ".how [data-how-entrance=\"support\"]", "durationMs": 800, "delayMs": 90 },
+      "steps": { "selector": ".how-step[data-how-entrance=\"step\"]", "count": 4, "durationMs": 800, "initialDelayMs": 160, "staggerMs": 90, "layoutStatic": true },
+      "reducedMotion": "settled-visible"
+    }
+  },
+  "microinteractions": [
+    { "selector": ".ds-button .button__label-current", "type": "label-blur-pulse", "durationMs": 300, "maximumBlurPx": 4, "pointer": "fine-only", "reducedMotion": "none" },
+    {
+      "selector": ".testimonial__copy-slot",
+      "type": "manual-carousel",
+      "durationMs": 450,
+      "distancePx": 32,
+      "portraitMaximumScale": 1.05,
+      "autoplay": false,
+      "reducedMotion": "instant"
+    }
+  ],
+  "technology": {
+    "selector": ".technology",
+    "annotationEntrance": {
+      "once": true,
+      "sequence": ["01", "02", "03", "04", "05", "06"],
+      "unitStaggerMs": 120,
+      "phaseDelayMs": { "connector": 0, "icon": 120, "number": 200, "title": 280, "body": 360 },
+      "phaseDurationMs": 800,
+      "maximumCompletionMs": 1760
+    },
+    "annotationDepth": {
+      "pointer": "fine-only",
+      "connectorAndTextMaximumPx": 2,
+      "iconAndNumberMaximumPx": 3,
+      "pausedWhileModelInteracting": true,
+      "viewerTransformsUnchanged": true,
+      "reducedMotion": "static"
+    },
+    "viewer": {
+      "selector": ".technology__media",
+      "posterSelector": ".technology__poster",
+      "canvasSelector": ".technology__canvas",
+      "stateAttribute": "data-model-state",
+      "interaction": "manual-drag-and-arrow-keys",
+      "reducedMotion": "poster"
+    }
+  },
+  "testimonials": {
+    "selector": ".testimonial",
+    "entrance": { "once": true, "durationMs": 800, "parts": ["portrait", "name", "role", "quote", "support", "navigation"], "delayMs": [0, 80, 140, 200, 290, 380], "coherentText": true },
+    "carousel": { "manual": true, "infinite": true, "itemCount": 3, "durationMs": 450, "distancePx": 32, "portraitMaximumScale": 1.05, "reducedMotion": "instant-single-state" }
+  },
+  "footer": {
+    "selector": ".footer",
+    "entrance": { "once": true, "durationMs": 800, "parts": ["heading", "support", "cta", "navigation"], "delayMs": [0, 90, 180, 270], "headingMode": "coherent", "translateY": -24 },
+    "depth": { "selector": ".footer__background", "maximumTravelPx": { "x": 12, "y": 6 }, "scale": 1.03, "pointer": "fine-only", "contentStatic": true, "reducedMotion": "static" }
+  },
+  "sharedButton": {
+    "selector": ".ds-button .button__label-current",
+    "type": "label-blur-pulse",
+    "durationMs": 300,
+    "maximumBlurPx": 4,
+    "minimumCount": 4,
+    "pointer": "fine-only",
+    "reducedMotion": "none"
+  },
+  "functionalControls": {
+    "headerMenu": { "selector": ".site-header .ds-site-header__menu", "controls": "primary-navigation" },
+    "preorderModal": { "triggerSelector": "[data-preorder-trigger]", "exactTriggers": ["header", "hero", "how-it-works", "footer"] },
+    "cookieConsent": { "selector": ".cookie-consent", "preferenceSelector": "[data-cookie-preference]", "values": ["accepted", "declined"], "optionalAfterChoice": true }
+  },
+  "notApplicable": []
+}

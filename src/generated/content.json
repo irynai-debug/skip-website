@@ -91,7 +91,7 @@
   "technology": {
     "sectionTitle": "MO/GO technology",
     "productDescription": "MO/GO powered wearable support system",
-    "image": "/assets/skip/optimized/technology-1536.webp",
+    "image": "https://cdn.sanity.io/images/3g1ua4nm/production/6da9dc00aa312455bf48016b3e3a7faf722e9bd9-1536x1024.webp",
     "viewerLabel": "Interactive 3D model of the MO/GO powered wearable support system. Drag or use arrow keys to rotate.",
     "features": [
       {
@@ -137,7 +137,7 @@
         "role": "HIKER & TRAVELER",
         "quote": "I can hike longer,\nclimb higher and explore\nmore with less strain.",
         "description": "MO/GO gives me the support I need to stay\nactive and keep doing what I love.",
-        "image": "/assets/skip/optimized/testimonial-daniel-384.webp",
+        "image": "https://cdn.sanity.io/images/3g1ua4nm/production/cd552fe78fc86d3dc004bb0b2aeba5ec16ff12f9-384x384.webp",
         "imageAlt": "Daniel, a hiker and traveler, in the mountains"
       },
       {
@@ -145,7 +145,7 @@
         "role": "TRAIL RUNNER & EXPLORER",
         "quote": "I move with more confidence,\ncover more ground and still have\nenergy left.",
         "description": "MO/GO adapts naturally to my movement, so every\ntrail feels easier and more enjoyable.",
-        "image": "/assets/skip/optimized/testimonial-maya-384.webp",
+        "image": "https://cdn.sanity.io/images/3g1ua4nm/production/28c9847ae674c12fb369876a86409fa9174ee5c5-384x384.webp",
         "imageAlt": "Maya, a trail runner and explorer, on a green hillside"
       },
       {
@@ -153,7 +153,7 @@
         "role": "HIKER & PHOTOGRAPHER",
         "quote": "Steep climbs feel smoother,\nlonger walks feel lighter and I\ncan keep going.",
         "description": "MO/GO helps reduce the effort of each step without\nchanging how I naturally move.",
-        "image": "/assets/skip/optimized/testimonial-michael-384.webp",
+        "image": "https://cdn.sanity.io/images/3g1ua4nm/production/b29b040c072e9211399b80f0582b516ceccaec00-384x384.webp",
         "imageAlt": "Michael, a hiker and photographer, on a rocky trail"
       }
     ]

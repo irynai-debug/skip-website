@@ -1,5 +1,5 @@
 import React from 'react'
-import content from '../src/content.json' with { type: 'json' }
+import content from '../src/generated/content.json' with { type: 'json' }
 import { Button, Type } from '../src/design-system/index.jsx'
 import { assetPath } from '../src/assetPath.js'
 

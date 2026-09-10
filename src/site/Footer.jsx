@@ -1,5 +1,5 @@
 import React from 'react'
-import content from '../content.json' with { type: 'json' }
+import content from '../generated/content.json' with { type: 'json' }
 import { Button, Container, Divider, IconLink, Link, Type } from '../design-system/index.jsx'
 import { MotionHeading } from '../motion.jsx'
 import {

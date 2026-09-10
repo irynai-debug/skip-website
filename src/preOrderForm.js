@@ -34,4 +34,4 @@ export function validatePreOrderForm(values = {}) {
 
   return errors
 }
-import content from './content.json' with { type: 'json' }
+import content from './generated/content.json' with { type: 'json' }

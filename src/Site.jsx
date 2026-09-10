@@ -1,5 +1,5 @@
 import React from 'react'
-import content from './content.json' with { type: 'json' }
+import content from './generated/content.json' with { type: 'json' }
 import { Header, Hero, HowItWorks, Technology, Testimonial } from './site/InteractiveSections.jsx'
 import { Footer } from './site/Footer.jsx'
 import { SiteRuntime } from './site/SiteRuntime.jsx'

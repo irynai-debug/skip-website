@@ -10,11 +10,15 @@
     "qa:sync": "node scripts/sync-dev-qa-assets.mjs",
     "start": "node scripts/serve-static-export.mjs",
     "preview": "node scripts/serve-static-export.mjs",
+    "content:sync": "node scripts/sync-sanity-content.mjs",
+    "pretest": "node scripts/sync-dev-qa-assets.mjs",
     "test:unit": "node --import ./tests/jsx-loader.mjs --test tests/*.test.mjs",
     "test": "node --import ./tests/jsx-loader.mjs --test tests/*.test.mjs && next build && node scripts/finalize-static-export.mjs && node scripts/verify-next-export.mjs",
     "verify": "node --import ./tests/jsx-loader.mjs --test tests/*.test.mjs && next build && node scripts/finalize-static-export.mjs && node scripts/verify-next-export.mjs"
   },
   "dependencies": {
+    "@next/env": "^16.3.4",
+    "@sanity/client": "^8.6.1",
     "next": "16.3.4",
     "react": "19.2.8",
     "react-dom": "19.2.8",

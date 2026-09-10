@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import content from './content.json' with { type: 'json' }
+import content from './generated/content.json' with { type: 'json' }
 import { TechnologyModelViewer } from './TechnologyModelViewer.js'
 import { detectWebGLSupport, shouldStartTechnologyModelLoad } from './technologyModelInteraction.js'
 

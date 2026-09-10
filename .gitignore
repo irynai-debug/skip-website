@@ -32,9 +32,6 @@ Thumbs.db
 
 # Local package/cache folders
 .npm-store/
-
-.npm-store/
-
 .pnpm-store/
 
 # Local/stale dependency backups
@@ -43,7 +40,23 @@ work/node_modules-stale-task1/
 work/stale-node-modules-birdpulse/
 
 # Codex generated QA/evidence
-.site-builder/
+.site-builder/*
+!.site-builder/qa-tools/
+!.site-builder/qa-tools/**
+!.site-builder/motion.json
+!.site-builder/audits/
+.site-builder/audits/*
+!.site-builder/audits/production-performance/
+.site-builder/audits/production-performance/*
+!.site-builder/audits/production-performance/glb-comparison.json
+!.site-builder/captures/
+.site-builder/captures/*
+!.site-builder/captures/production-performance/
+.site-builder/captures/production-performance/*
+!.site-builder/captures/production-performance/glb-original-viewport.jpg
+!.site-builder/captures/production-performance/glb-candidate-viewport.jpg
+!.site-builder/captures/production-performance/glb-visual-diff.png
+public/.site-builder/
 
 # Temporary working files
 work/

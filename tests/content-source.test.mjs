@@ -4,13 +4,12 @@ import { existsSync } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 
 const contentUrl = new URL('../src/content.json', import.meta.url)
-const pagesConfigUrl = new URL('../.pages.yml', import.meta.url)
-const uploadsRootUrl = new URL('../public/uploads/', import.meta.url)
+const snapshotUrl = new URL('../src/generated/content.json', import.meta.url)
 
 const readPath = (value, path) => path.split('.').reduce((current, key) => current?.[key], value)
 
-test('editable production copy is exposed through one CMS-ready JSON source', async () => {
-  assert.equal(existsSync(contentUrl), true, 'src/content.json must own editable production copy')
+test('the offline fallback preserves the complete editorial shape used by Sanity sync', async () => {
+  assert.equal(existsSync(contentUrl), true, 'src/content.json must remain available as fallback')
 
   const content = JSON.parse(await readFile(contentUrl, 'utf8'))
   assert.deepEqual(Object.keys(content), [
@@ -83,15 +82,8 @@ test('editable production copy is exposed through one CMS-ready JSON source', as
       `${entry.path} must remain editable copy rather than a technical asset`,
     )
   }
-})
 
-test('Pages CMS exposes dedicated upload controls for the editable site images', async () => {
-  const config = await readFile(pagesConfigUrl, 'utf8')
-
-  assert.equal(existsSync(uploadsRootUrl), true, 'public/uploads must be tracked for CMS media')
-  assert.match(config, /media:\s*\r?\n\s+- name: site_images[\s\S]*?input: public\/uploads[\s\S]*?output: \/uploads/)
-  assert.equal((config.match(/\btype: image\b/g) ?? []).length, 2)
-  assert.equal((config.match(/\bmedia: site_images\b/g) ?? []).length, 2)
-  assert.match(config, /path: public\/uploads\/technology/)
-  assert.match(config, /path: public\/uploads\/testimonials/)
+  assert.equal(existsSync(snapshotUrl), true, 'Sanity sync must produce a build-time snapshot')
+  const snapshot = JSON.parse(await readFile(snapshotUrl, 'utf8'))
+  assert.deepEqual(Object.keys(snapshot), Object.keys(content))
 })

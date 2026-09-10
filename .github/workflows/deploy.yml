@@ -4,6 +4,8 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+  repository_dispatch:
+    types: [sanity-content-updated]
 
 permissions:
   contents: read
@@ -30,7 +32,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Setup Pages
@@ -38,6 +40,14 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Synchronize published Sanity content
+        env:
+          SANITY_PROJECT_ID: 3g1ua4nm
+          SANITY_DATASET: production
+          SANITY_API_VERSION: 2025-02-19
+          SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
+        run: pnpm run content:sync -- --strict
 
       - name: Build
         env:
