@@ -22,6 +22,7 @@ import {
   HOW_IT_WORKS_COPY,
   HOW_IT_WORKS_STEP_DURATION_MS,
   HOW_IT_WORKS_STEPS,
+  TECHNOLOGY_POSTER,
   TECHNOLOGY_FEATURES,
   TESTIMONIALS,
 } from '../siteContent.js'
@@ -380,7 +381,7 @@ export function Technology() {
       <h2 className="ds-sr-only" id="technology-title" data-motion-static>{content.technology.sectionTitle}</h2>
       <Container className="technology__stage">
         <ul className="technology__features technology__features--left">{left.map(({ feature, index }) => <TechnologyFeature feature={feature} index={index} key={feature.number} />)}</ul>
-        <TechnologyMedia modelSrc={ASSETS.technologyModel} poster={ASSETS.technology} />
+        <TechnologyMedia modelSrc={ASSETS.technologyModel} poster={TECHNOLOGY_POSTER} />
         <ul className="technology__features technology__features--right">{right.map(({ feature, index }) => <TechnologyFeature feature={feature} index={index} key={feature.number} />)}</ul>
       </Container>
     </section>

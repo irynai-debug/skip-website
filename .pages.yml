@@ -1,3 +1,12 @@
+media:
+  - name: site_images
+    label: Site Images
+    input: public/uploads
+    output: /uploads
+    categories: [image]
+    extensions: [avif, jpg, jpeg, png, webp]
+    rename: safe
+
 content:
   - name: content
     label: Site Content
@@ -76,6 +85,14 @@ content:
         fields:
           - { name: sectionTitle, type: string }
           - { name: productDescription, type: text }
+          - name: image
+            label: Product fallback image
+            type: image
+            options:
+              media: site_images
+              path: public/uploads/technology
+              extensions: [avif, jpg, jpeg, png, webp]
+              rename: safe
           - { name: viewerLabel, type: string }
           - name: features
             type: object
@@ -100,6 +117,14 @@ content:
               - { name: role, type: string }
               - { name: quote, type: text }
               - { name: description, type: text }
+              - name: image
+                label: Portrait image
+                type: image
+                options:
+                  media: site_images
+                  path: public/uploads/testimonials
+                  extensions: [avif, jpg, jpeg, png, webp]
+                  rename: safe
               - { name: imageAlt, type: string }
 
       - name: footer

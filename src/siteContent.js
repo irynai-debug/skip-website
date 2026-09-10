@@ -31,6 +31,18 @@ const responsiveAsset = ({ stem, widths, width, height, sizes, densityBase }) =>
   })
 }
 
+export const resolveEditableImageAsset = (imagePath, optimizedAsset) => {
+  const src = assetPath(imagePath)
+  if (!src || src === optimizedAsset.src) return optimizedAsset
+
+  return Object.freeze({
+    src,
+    sizes: optimizedAsset.sizes,
+    width: optimizedAsset.width,
+    height: optimizedAsset.height,
+  })
+}
+
 export const ASSETS = Object.freeze({
   logo: `${ICON_ASSET_ROOT}/Logo.svg`,
   basket: `${ICON_ASSET_ROOT}/basket.svg`,
@@ -82,6 +94,8 @@ export const ASSETS = Object.freeze({
     twitter: `${ICON_ASSET_ROOT}/x-twitter.svg`,
   },
 })
+
+export const TECHNOLOGY_POSTER = resolveEditableImageAsset(content.technology.image, ASSETS.technology)
 
 export const DESTINATIONS = Object.freeze({
   home: 'https://www.skipwithjoy.com/',
@@ -169,7 +183,7 @@ export const TECHNOLOGY_FEATURES = Object.freeze(content.technology.features.map
   ...TECHNOLOGY_FEATURE_PRESENTATION[index],
 })))
 
-const TESTIMONIAL_IMAGES = [
+const TESTIMONIAL_IMAGE_FALLBACKS = [
   ASSETS.testimonials.daniel,
   ASSETS.testimonials.maya,
   ASSETS.testimonials.michael,
@@ -180,7 +194,7 @@ export const TESTIMONIALS = Object.freeze(content.testimonials.items.map((item, 
   role: item.role,
   quote: item.quote,
   body: item.description,
-  image: TESTIMONIAL_IMAGES[index],
+  image: resolveEditableImageAsset(item.image, TESTIMONIAL_IMAGE_FALLBACKS[index]),
   alt: item.imageAlt,
 })))
 

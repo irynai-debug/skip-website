@@ -140,6 +140,25 @@ test('project-owned production rasters resolve to explicit optimized assets', ()
   ])
 })
 
+test('CMS image paths preserve current responsive assets and safely replace them after upload', async () => {
+  assert.equal(content.TECHNOLOGY_POSTER, content.ASSETS.technology)
+  assert.deepEqual(content.TESTIMONIALS.map(({ image }) => image), Object.values(content.ASSETS.testimonials))
+
+  const replacement = content.resolveEditableImageAsset(
+    '/uploads/testimonials/new-portrait.webp',
+    content.ASSETS.testimonials.daniel,
+  )
+  assert.deepEqual(replacement, {
+    src: '/uploads/testimonials/new-portrait.webp',
+    sizes: '(max-width: 480px) 96px, (max-width: 820px) 128px, 176px',
+    width: 1254,
+    height: 1254,
+  })
+
+  const interactiveSource = await readInteractiveSource()
+  assert.match(interactiveSource, /poster=\{TECHNOLOGY_POSTER\}/)
+})
+
 test('production actions use verified official Skip destinations', () => {
   assert.equal(content.DESTINATIONS.reserve, 'https://www.skipwithjoy.com/reserve/p/style-01-ej5na-hbs9d')
   assert.equal(content.DESTINATIONS.learn, 'https://www.skipwithjoy.com/learn')
