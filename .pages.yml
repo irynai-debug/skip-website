@@ -42,19 +42,17 @@ content:
           - { name: subtitle, type: text }
           - { name: description, type: text }
           - name: metrics
-            type: list
-            list:
-              type: object
-              fields:
-                - { name: label, type: string }
-                - { name: value, type: string }
+            type: object
+            list: true
+            fields:
+              - { name: label, type: string }
+              - { name: value, type: string }
           - name: outcomes
-            type: list
-            list:
-              type: object
-              fields:
-                - { name: label, type: string }
-                - { name: value, type: string }
+            type: object
+            list: true
+            fields:
+              - { name: label, type: string }
+              - { name: value, type: string }
 
       - name: howItWorks
         type: object
@@ -63,17 +61,15 @@ content:
           - { name: description, type: text }
           - { name: imageAltPrefix, type: string }
           - name: callouts
-            type: list
-            list:
-              type: string
+            type: string
+            list: true
           - name: steps
-            type: list
-            list:
-              type: object
-              fields:
-                - { name: number, type: string }
-                - { name: title, type: string }
-                - { name: description, type: text }
+            type: object
+            list: true
+            fields:
+              - { name: number, type: string }
+              - { name: title, type: string }
+              - { name: description, type: text }
 
       - name: technology
         type: object
@@ -82,13 +78,12 @@ content:
           - { name: productDescription, type: text }
           - { name: viewerLabel, type: string }
           - name: features
-            type: list
-            list:
-              type: object
-              fields:
-                - { name: number, type: string }
-                - { name: title, type: string }
-                - { name: description, type: text }
+            type: object
+            list: true
+            fields:
+              - { name: number, type: string }
+              - { name: title, type: string }
+              - { name: description, type: text }
 
       - name: testimonials
         type: object
@@ -98,15 +93,14 @@ content:
           - { name: previousButtonLabel, type: string }
           - { name: nextButtonLabel, type: string }
           - name: items
-            type: list
-            list:
-              type: object
-              fields:
-                - { name: name, type: string }
-                - { name: role, type: string }
-                - { name: quote, type: text }
-                - { name: description, type: text }
-                - { name: imageAlt, type: string }
+            type: object
+            list: true
+            fields:
+              - { name: name, type: string }
+              - { name: role, type: string }
+              - { name: quote, type: text }
+              - { name: description, type: text }
+              - { name: imageAlt, type: string }
 
       - name: footer
         type: object
@@ -117,15 +111,13 @@ content:
           - { name: navigationLabel, type: string }
           - { name: socialMediaLabel, type: string }
           - name: groups
-            type: list
-            list:
-              type: object
-              fields:
-                - { name: title, type: string }
-                - name: links
-                  type: list
-                  list:
-                    type: string
+            type: object
+            list: true
+            fields:
+              - { name: title, type: string }
+              - name: links
+                type: string
+                list: true
           - name: socialLinks
             type: object
             fields:
@@ -165,4 +157,17 @@ content:
                 type: object
                 fields:
                   - { name: label, type: string }
-                  - { name: requiredError, type:
+                  - { name: requiredError, type: string }
+                  - { name: invalidError, type: string }
+              - name: country
+                type: object
+                fields:
+                  - { name: label, type: string }
+                  - { name: placeholder, type: string }
+                  - { name: requiredError, type: string }
+
+      - name: notFound
+        type: object
+        fields:
+          - { name: title, type: string }
+          - { name: returnHomeButton, type: string }
