@@ -43,14 +43,16 @@ content:
           - { name: description, type: text }
           - name: metrics
             type: list
-            fields:
-              - { name: label, type: string }
-              - { name: value, type: string }
+            list:
+              fields:
+                - { name: label, type: string }
+                - { name: value, type: string }
           - name: outcomes
             type: list
-            fields:
-              - { name: label, type: string }
-              - { name: value, type: string }
+            list:
+              fields:
+                - { name: label, type: string }
+                - { name: value, type: string }
 
       - name: howItWorks
         type: object
@@ -60,14 +62,16 @@ content:
           - { name: imageAltPrefix, type: string }
           - name: callouts
             type: list
-            fields:
-              - { name: value, type: string }
+            list:
+              fields:
+                - { name: value, type: string }
           - name: steps
             type: list
-            fields:
-              - { name: number, type: string }
-              - { name: title, type: string }
-              - { name: description, type: text }
+            list:
+              fields:
+                - { name: number, type: string }
+                - { name: title, type: string }
+                - { name: description, type: text }
 
       - name: technology
         type: object
@@ -77,10 +81,11 @@ content:
           - { name: viewerLabel, type: string }
           - name: features
             type: list
-            fields:
-              - { name: number, type: string }
-              - { name: title, type: string }
-              - { name: description, type: text }
+            list:
+              fields:
+                - { name: number, type: string }
+                - { name: title, type: string }
+                - { name: description, type: text }
 
       - name: testimonials
         type: object
@@ -91,12 +96,13 @@ content:
           - { name: nextButtonLabel, type: string }
           - name: items
             type: list
-            fields:
-              - { name: name, type: string }
-              - { name: role, type: string }
-              - { name: quote, type: text }
-              - { name: description, type: text }
-              - { name: imageAlt, type: string }
+            list:
+              fields:
+                - { name: name, type: string }
+                - { name: role, type: string }
+                - { name: quote, type: text }
+                - { name: description, type: text }
+                - { name: imageAlt, type: string }
 
       - name: footer
         type: object
@@ -108,12 +114,14 @@ content:
           - { name: socialMediaLabel, type: string }
           - name: groups
             type: list
-            fields:
-              - { name: title, type: string }
-              - name: links
-                type: list
-                fields:
-                  - { name: value, type: string }
+            list:
+              fields:
+                - { name: title, type: string }
+                - name: links
+                  type: list
+                  list:
+                    fields:
+                      - { name: value, type: string }
           - name: socialLinks
             type: object
             fields:
