@@ -26,11 +26,12 @@ export function validatePreOrderForm(values = {}) {
   const lastName = values.lastName?.trim()
   const email = values.email?.trim()
 
-  if (!firstName) errors.firstName = 'Enter your first name.'
-  if (!lastName) errors.lastName = 'Enter your last name.'
-  if (!email) errors.email = 'Enter your email address.'
-  else if (!emailPattern.test(email)) errors.email = 'Enter a valid email address.'
-  if (!values.country) errors.country = 'Select a country or region.'
+  if (!firstName) errors.firstName = content.preOrderModal.fields.firstName.requiredError
+  if (!lastName) errors.lastName = content.preOrderModal.fields.lastName.requiredError
+  if (!email) errors.email = content.preOrderModal.fields.email.requiredError
+  else if (!emailPattern.test(email)) errors.email = content.preOrderModal.fields.email.invalidError
+  if (!values.country) errors.country = content.preOrderModal.fields.country.requiredError
 
   return errors
 }
+import content from './content.json' with { type: 'json' }

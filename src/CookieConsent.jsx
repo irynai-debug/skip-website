@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
+import content from './content.json' with { type: 'json' }
 import { Button, Type } from './design-system/index.jsx'
 import { readCookieConsentPreference, storeCookieConsentPreference } from './cookieConsent.js'
 
@@ -54,15 +55,15 @@ export function CookieConsent({ storage }) {
       onAnimationEnd={finishClosing}
     >
       <div className="cookie-consent__copy">
-        <Type as="h2" role="h3" id="cookie-consent-title">Cookies, your choice</Type>
+        <Type as="h2" role="h3" id="cookie-consent-title">{content.cookieConsent.title}</Type>
         <Type
           id="cookie-consent-description"
           data-ds-exempt="Cookie consent supporting copy uses the inverse secondary text token"
-        >We use cookies to improve your experience and understand how our site is used.</Type>
+        >{content.cookieConsent.description}</Type>
       </div>
       <div className="cookie-consent__actions">
-        <Button size="small" variant="primary-borderless" data-cookie-preference="accepted" onClick={() => choosePreference('accepted')}>ACCEPT</Button>
-        <Button size="small" variant="outline" data-cookie-preference="declined" onClick={() => choosePreference('declined')}>DECLINE</Button>
+        <Button size="small" variant="primary-borderless" data-cookie-preference="accepted" onClick={() => choosePreference('accepted')}>{content.cookieConsent.acceptButton}</Button>
+        <Button size="small" variant="outline" data-cookie-preference="declined" onClick={() => choosePreference('declined')}>{content.cookieConsent.declineButton}</Button>
       </div>
     </aside>
   )

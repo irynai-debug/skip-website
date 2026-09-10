@@ -1,10 +1,9 @@
 'use client'
 
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+import content from './content.json' with { type: 'json' }
 import { TechnologyModelViewer } from './TechnologyModelViewer.js'
 import { detectWebGLSupport, shouldStartTechnologyModelLoad } from './technologyModelInteraction.js'
-
-const PRODUCT_DESCRIPTION = 'MO/GO powered wearable support system'
 
 export function TechnologyMedia({ modelSrc, poster }) {
   const mediaRef = useRef(null)
@@ -76,7 +75,7 @@ export function TechnologyMedia({ modelSrc, poster }) {
     'div',
     { className: 'technology__media', 'data-model-state': state, ref: mediaRef },
     React.createElement('img', {
-      alt: state === 'ready' ? '' : PRODUCT_DESCRIPTION,
+      alt: state === 'ready' ? '' : content.technology.productDescription,
       className: 'technology__poster',
       decoding: 'async',
       height: poster.height,

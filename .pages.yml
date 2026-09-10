@@ -1,0 +1,169 @@
+content:
+  - name: content
+    label: Site Content
+    type: file
+    path: src/content.json
+    fields:
+      - name: site
+        type: object
+        fields:
+          - { name: skipLink, type: string }
+          - { name: brandName, type: string }
+          - { name: brandHomeLabel, type: string }
+          - { name: metadataTitle, type: string }
+          - { name: metadataDescription, type: text }
+
+      - name: navigation
+        type: object
+        fields:
+          - { name: primaryLabel, type: string }
+          - { name: basketButtonLabel, type: string }
+          - { name: menuOpenLabel, type: string }
+          - { name: menuCloseLabel, type: string }
+          - name: items
+            type: object
+            fields:
+              - { name: howItWorks, type: string }
+              - { name: product, type: string }
+              - { name: testimonials, type: string }
+
+      - name: cta
+        type: object
+        fields:
+          - { name: preOrder, type: string }
+          - { name: reserveSpot, type: string }
+          - { name: seeMogoInAction, type: string }
+          - { name: reserveMogo, type: string }
+
+      - name: hero
+        type: object
+        fields:
+          - { name: title, type: text }
+          - { name: subtitle, type: text }
+          - { name: description, type: text }
+          - name: metrics
+            type: list
+            fields:
+              - { name: label, type: string }
+              - { name: value, type: string }
+          - name: outcomes
+            type: list
+            fields:
+              - { name: label, type: string }
+              - { name: value, type: string }
+
+      - name: howItWorks
+        type: object
+        fields:
+          - { name: title, type: text }
+          - { name: description, type: text }
+          - { name: imageAltPrefix, type: string }
+          - name: callouts
+            type: list
+            fields:
+              - { name: value, type: string }
+          - name: steps
+            type: list
+            fields:
+              - { name: number, type: string }
+              - { name: title, type: string }
+              - { name: description, type: text }
+
+      - name: technology
+        type: object
+        fields:
+          - { name: sectionTitle, type: string }
+          - { name: productDescription, type: text }
+          - { name: viewerLabel, type: string }
+          - name: features
+            type: list
+            fields:
+              - { name: number, type: string }
+              - { name: title, type: string }
+              - { name: description, type: text }
+
+      - name: testimonials
+        type: object
+        fields:
+          - { name: sectionTitle, type: string }
+          - { name: statusTemplate, type: string }
+          - { name: previousButtonLabel, type: string }
+          - { name: nextButtonLabel, type: string }
+          - name: items
+            type: list
+            fields:
+              - { name: name, type: string }
+              - { name: role, type: string }
+              - { name: quote, type: text }
+              - { name: description, type: text }
+              - { name: imageAlt, type: string }
+
+      - name: footer
+        type: object
+        fields:
+          - { name: title, type: text }
+          - { name: description, type: text }
+          - { name: copyright, type: string }
+          - { name: navigationLabel, type: string }
+          - { name: socialMediaLabel, type: string }
+          - name: groups
+            type: list
+            fields:
+              - { name: title, type: string }
+              - name: links
+                type: list
+                fields:
+                  - { name: value, type: string }
+          - name: socialLinks
+            type: object
+            fields:
+              - { name: instagram, type: string }
+              - { name: youtube, type: string }
+              - { name: linkedin, type: string }
+              - { name: x, type: string }
+
+      - name: cookieConsent
+        type: object
+        fields:
+          - { name: title, type: string }
+          - { name: description, type: text }
+          - { name: acceptButton, type: string }
+          - { name: declineButton, type: string }
+
+      - name: preOrderModal
+        type: object
+        fields:
+          - { name: title, type: text }
+          - { name: description, type: text }
+          - { name: closeButtonLabel, type: string }
+          - name: fields
+            type: object
+            fields:
+              - name: firstName
+                type: object
+                fields:
+                  - { name: label, type: string }
+                  - { name: requiredError, type: string }
+              - name: lastName
+                type: object
+                fields:
+                  - { name: label, type: string }
+                  - { name: requiredError, type: string }
+              - name: email
+                type: object
+                fields:
+                  - { name: label, type: string }
+                  - { name: requiredError, type: string }
+                  - { name: invalidError, type: string }
+              - name: country
+                type: object
+                fields:
+                  - { name: label, type: string }
+                  - { name: placeholder, type: string }
+                  - { name: requiredError, type: string }
+
+      - name: notFound
+        type: object
+        fields:
+          - { name: title, type: string }
+          - { name: returnHomeButton, type: string }

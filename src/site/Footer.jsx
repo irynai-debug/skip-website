@@ -1,4 +1,5 @@
 import React from 'react'
+import content from '../content.json' with { type: 'json' }
 import { Button, Container, Divider, IconLink, Link, Type } from '../design-system/index.jsx'
 import { MotionHeading } from '../motion.jsx'
 import {
@@ -15,10 +16,10 @@ function LineText({ text }) {
 
 export function Footer() {
   const socialLinks = [
-    ['Instagram', ASSETS.social.instagram, SOCIAL_DESTINATIONS.Instagram],
-    ['YouTube', ASSETS.social.youtube, SOCIAL_DESTINATIONS.YouTube],
-    ['LinkedIn', ASSETS.social.linkedin, SOCIAL_DESTINATIONS.LinkedIn],
-    ['X', ASSETS.social.twitter, SOCIAL_DESTINATIONS.X],
+    [content.footer.socialLinks.instagram, ASSETS.social.instagram, SOCIAL_DESTINATIONS.Instagram],
+    [content.footer.socialLinks.youtube, ASSETS.social.youtube, SOCIAL_DESTINATIONS.YouTube],
+    [content.footer.socialLinks.linkedin, ASSETS.social.linkedin, SOCIAL_DESTINATIONS.LinkedIn],
+    [content.footer.socialLinks.x, ASSETS.social.twitter, SOCIAL_DESTINATIONS.X],
   ]
 
   return (
@@ -39,7 +40,7 @@ export function Footer() {
             <div className="footer__support" data-footer-entrance="support"><Type role="body-large"><LineText text={FOOTER_COPY.body} /></Type></div>
             <div className="footer__action" data-footer-entrance="cta"><Button data-preorder-trigger="footer" variant="primary-borderless" size="large">{FOOTER_COPY.cta}</Button></div>
           </div>
-          <nav className="footer__navigation" aria-label="Footer navigation" data-footer-entrance="navigation">
+          <nav className="footer__navigation" aria-label={content.footer.navigationLabel} data-footer-entrance="navigation">
             {FOOTER_GROUPS.map((group) => (
               <div className="footer__group" key={group.title}>
                 <Divider variant="subtle-vertical" aria-hidden="true" />
@@ -54,11 +55,11 @@ export function Footer() {
         <Divider variant="subtle" className="footer__bottom-divider" />
         <div className="footer__bottom">
           <div className="footer__legal">
-            <a href="#top" className="footer__brand" aria-label="Skip home"><img src={ASSETS.logo} alt="Skip" /></a>
+            <a href="#top" className="footer__brand" aria-label={content.site.brandHomeLabel}><img src={ASSETS.logo} alt={content.site.brandName} /></a>
             <Divider variant="subtle-vertical" aria-hidden="true" />
             <Type role="body" data-ds-exempt="Reference-specific footer secondary state">{FOOTER_COPY.copyright}</Type>
           </div>
-          <div className="footer__socials" aria-label="Social media">
+          <div className="footer__socials" aria-label={content.footer.socialMediaLabel}>
             {socialLinks.map(([label, icon, href]) => <IconLink key={label} href={href} label={label} target="_blank" rel="noopener noreferrer" variant="outline-muted" iconSource={icon} />)}
           </div>
         </div>

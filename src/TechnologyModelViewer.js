@@ -1,9 +1,8 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
+import content from './content.json' with { type: 'json' }
 import { advanceRotationInertia, applyDragRotation } from './technologyModelInteraction.js'
-
-const VIEWER_LABEL = 'Interactive 3D model of the MO/GO powered wearable support system. Drag or use arrow keys to rotate.'
 
 export function TechnologyModelViewer({ modelSrc, onError, onReady }) {
   const canvasRef = useRef(null)
@@ -237,7 +236,7 @@ export function TechnologyModelViewer({ modelSrc, onError, onReady }) {
 
   return React.createElement('canvas', {
     'aria-hidden': ready ? undefined : 'true',
-    'aria-label': ready ? VIEWER_LABEL : undefined,
+    'aria-label': ready ? content.technology.viewerLabel : undefined,
     className: 'technology__canvas',
     ref: canvasRef,
     role: ready ? 'group' : undefined,

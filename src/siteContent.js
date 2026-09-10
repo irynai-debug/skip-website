@@ -1,4 +1,5 @@
 import { assetPath } from './assetPath.js'
+import content from './content.json' with { type: 'json' }
 
 export const SITE_SECTIONS = Object.freeze([
   { id: 'hero', reference: '1.png' },
@@ -93,22 +94,17 @@ export const DESTINATIONS = Object.freeze({
   linkedin: 'https://www.linkedin.com/company/skipwithjoy',
 })
 
-export const FOOTER_DESTINATIONS = Object.freeze({
-  'MO/GO Overview': undefined,
-  'Key Features': undefined,
-  'Product Design': undefined,
-  'Tech Specifications': undefined,
-  'Pre-Order': DESTINATIONS.reserve,
-  'Our Mission': undefined,
-  'About Skip': DESTINATIONS.about,
-  Careers: DESTINATIONS.careers,
-  'News & Press': undefined,
-  'Contact Us': DESTINATIONS.contact,
-  'How It Works': undefined,
-  Technology: undefined,
-  'User Stories': undefined,
-  FAQs: DESTINATIONS.faq,
-})
+const FOOTER_DESTINATION_GROUPS = [
+  [undefined, undefined, undefined, undefined, DESTINATIONS.reserve],
+  [undefined, DESTINATIONS.about, DESTINATIONS.careers, undefined, DESTINATIONS.contact],
+  [undefined, undefined, undefined, DESTINATIONS.faq],
+]
+
+export const FOOTER_DESTINATIONS = Object.freeze(Object.fromEntries(
+  content.footer.groups.flatMap((group, groupIndex) => group.links.map((label, linkIndex) => (
+    [label, FOOTER_DESTINATION_GROUPS[groupIndex][linkIndex]]
+  ))),
+))
 
 export const SOCIAL_DESTINATIONS = Object.freeze({
   Instagram: 'https://www.instagram.com/elissiyas/',
@@ -118,44 +114,38 @@ export const SOCIAL_DESTINATIONS = Object.freeze({
 })
 
 export const HERO_COPY = Object.freeze({
-  navigation: ['How it works', 'Product', 'Testimonials'],
-  heading: 'MEET\nNEW\nMO/GO',
-  lead: 'Wearable tech for more freedom\nin every step you make.',
-  body: 'MO/GO helps you go further, climb higher\nand stay active—so you can keep exploring\nwhat moves you.',
-  cta: 'RESERVE YOUR SPOT',
+  navigation: Object.values(content.navigation.items),
+  heading: content.hero.title,
+  lead: content.hero.subtitle,
+  body: content.hero.description,
+  cta: content.cta.reserveSpot,
 })
 
-export const HERO_METRICS = Object.freeze([
-  ['Uphill Support', '+40%'],
-  ['Impact Reduction', '-30%'],
-  ['Battery Life', '8+ hrs'],
-  ['Weight', '1.8 kg'],
-])
+export const HERO_METRICS = Object.freeze(content.hero.metrics.map(({ label, value }) => (
+  Object.freeze([label, value])
+)))
 
-export const HERO_OUTCOMES = Object.freeze([
-  { label: 'REDUCTION IN\nLEG STRAIN', value: '30%' },
-  { label: 'MORE ENDURANCE\nON EVERY HIKE', value: '2.5x' },
-])
+export const HERO_OUTCOMES = Object.freeze(content.hero.outcomes.map(Object.freeze))
 
 export const HOW_IT_WORKS_COPY = Object.freeze({
-  heading: 'HOW IT\nWORKS',
-  body: 'Getting started with MO/GO is simple.\nFour steps to more freedom in every step.',
-  primaryCta: 'RESERVE YOUR SPOT',
-  secondaryCta: 'SEE MO/GO IN ACTION',
+  heading: content.howItWorks.title,
+  body: content.howItWorks.description,
+  primaryCta: content.cta.reserveSpot,
+  secondaryCta: content.cta.seeMogoInAction,
 })
 
-export const HOW_IT_WORKS_CALLOUTS = Object.freeze([
-  { label: 'Power in motion', position: 'top' },
-  { label: 'Adaptive\nsupport', position: 'middle' },
-  { label: 'Built to\nmove', position: 'bottom' },
-])
+export const HOW_IT_WORKS_CALLOUTS = Object.freeze(
+  ['top', 'middle', 'bottom'].map((position, index) => Object.freeze({
+    label: content.howItWorks.callouts[index],
+    position,
+  })),
+)
 
-export const HOW_IT_WORKS_STEPS = Object.freeze([
-  { number: '01', title: 'Take the first step', body: 'Tell us about your goals and how you move.' },
-  { number: '02', title: 'Find your fit', body: 'We recommend the right MO/GO system for you.' },
-  { number: '03', title: 'Get set up', body: 'Receive your system and set it up with guidance.' },
-  { number: '04', title: 'Move with confidence', body: 'Wear, adapt, and go further with every step.' },
-])
+export const HOW_IT_WORKS_STEPS = Object.freeze(content.howItWorks.steps.map((step) => Object.freeze({
+  number: step.number,
+  title: step.title,
+  body: step.description,
+})))
 
 export const HOW_IT_WORKS_STEP_DURATION_MS = 4200
 
@@ -163,55 +153,49 @@ export const getNextHowItWorksStepIndex = (currentIndex) => (
   (currentIndex + 1) % HOW_IT_WORKS_STEPS.length
 )
 
-export const TECHNOLOGY_FEATURES = Object.freeze([
-  { number: '01', title: 'SENSES MOVEMENT', body: 'Advanced sensors detect\nyour movement and terrain\nin real time.', icon: `${ICON_ASSET_ROOT}/senses-movement.svg`, side: 'left' },
-  { number: '02', title: 'ADAPTS INSTANTLY', body: 'Smart algorithms adjust\nsupport to your pace,\nstride, and activity.', icon: `${ICON_ASSET_ROOT}/adapts-instantly.svg`, side: 'left' },
-  { number: '03', title: 'NATURAL SUPPORT', body: 'Works with your body\n— not against it.', icon: `${ICON_ASSET_ROOT}/natural-support.svg`, side: 'left' },
-  { number: '04', title: 'PROVIDES ASSIST', body: 'Targeted power delivers\nextra boost when you need\nit most.', icon: `${ICON_ASSET_ROOT}/provides-assist.svg`, side: 'right' },
-  { number: '05', title: 'LIGHTWEIGHT DESIGN', body: 'Built with premium materials\nto keep you moving freely\nwithout extra weight.', icon: `${ICON_ASSET_ROOT}/lightweight-design.svg`, side: 'right' },
-  { number: '06', title: 'BUILT TO ENDURE', body: 'Long-lasting performance\nso you can go further\nwith less fatigue.', icon: `${ICON_ASSET_ROOT}/built-to-endure.svg`, side: 'right' },
-])
+const TECHNOLOGY_FEATURE_PRESENTATION = [
+  { icon: `${ICON_ASSET_ROOT}/senses-movement.svg`, side: 'left' },
+  { icon: `${ICON_ASSET_ROOT}/adapts-instantly.svg`, side: 'left' },
+  { icon: `${ICON_ASSET_ROOT}/natural-support.svg`, side: 'left' },
+  { icon: `${ICON_ASSET_ROOT}/provides-assist.svg`, side: 'right' },
+  { icon: `${ICON_ASSET_ROOT}/lightweight-design.svg`, side: 'right' },
+  { icon: `${ICON_ASSET_ROOT}/built-to-endure.svg`, side: 'right' },
+]
 
-export const TESTIMONIALS = Object.freeze([
-  Object.freeze({
-    name: 'DANIEL R.',
-    role: 'HIKER & TRAVELER',
-    quote: 'I can hike longer,\nclimb higher and explore\nmore with less strain.',
-    body: 'MO/GO gives me the support I need to stay\nactive and keep doing what I love.',
-    image: ASSETS.testimonials.daniel,
-    alt: 'Daniel, a hiker and traveler, in the mountains',
-  }),
-  Object.freeze({
-    name: 'MAYA L.',
-    role: 'TRAIL RUNNER & EXPLORER',
-    quote: 'I move with more confidence,\ncover more ground and still have\nenergy left.',
-    body: 'MO/GO adapts naturally to my movement, so every\ntrail feels easier and more enjoyable.',
-    image: ASSETS.testimonials.maya,
-    alt: 'Maya, a trail runner and explorer, on a green hillside',
-  }),
-  Object.freeze({
-    name: 'MICHAEL T.',
-    role: 'HIKER & PHOTOGRAPHER',
-    quote: 'Steep climbs feel smoother,\nlonger walks feel lighter and I\ncan keep going.',
-    body: 'MO/GO helps reduce the effort of each step without\nchanging how I naturally move.',
-    image: ASSETS.testimonials.michael,
-    alt: 'Michael, a hiker and photographer, on a rocky trail',
-  }),
-])
+export const TECHNOLOGY_FEATURES = Object.freeze(content.technology.features.map((feature, index) => Object.freeze({
+  number: feature.number,
+  title: feature.title,
+  body: feature.description,
+  ...TECHNOLOGY_FEATURE_PRESENTATION[index],
+})))
+
+const TESTIMONIAL_IMAGES = [
+  ASSETS.testimonials.daniel,
+  ASSETS.testimonials.maya,
+  ASSETS.testimonials.michael,
+]
+
+export const TESTIMONIALS = Object.freeze(content.testimonials.items.map((item, index) => Object.freeze({
+  name: item.name,
+  role: item.role,
+  quote: item.quote,
+  body: item.description,
+  image: TESTIMONIAL_IMAGES[index],
+  alt: item.imageAlt,
+})))
 
 export const getAdjacentTestimonialIndex = (currentIndex, delta) => (
   (currentIndex + delta + TESTIMONIALS.length) % TESTIMONIALS.length
 )
 
 export const FOOTER_COPY = Object.freeze({
-  heading: 'READY TO MOVE\nFURTHER?',
-  body: 'Reserve your MO/GO and\ndiscover what’s possible.',
-  cta: 'RESERVE YOUR SPOT',
-  copyright: '© 2025 Skip. All rights reserved.',
+  heading: content.footer.title,
+  body: content.footer.description,
+  cta: content.cta.reserveSpot,
+  copyright: content.footer.copyright,
 })
 
-export const FOOTER_GROUPS = Object.freeze([
-  { title: 'PRODUCT', links: ['MO/GO Overview', 'Key Features', 'Product Design', 'Tech Specifications', 'Pre-Order'] },
-  { title: 'COMPANY', links: ['Our Mission', 'About Skip', 'Careers', 'News & Press', 'Contact Us'] },
-  { title: 'RESOURCES', links: ['How It Works', 'Technology', 'User Stories', 'FAQs'] },
-])
+export const FOOTER_GROUPS = Object.freeze(content.footer.groups.map((group) => Object.freeze({
+  title: group.title,
+  links: Object.freeze([...group.links]),
+})))

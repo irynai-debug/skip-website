@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useEffect, useRef, useState } from 'react'
+import content from './content.json' with { type: 'json' }
 import { Button, Field, IconButton, Type } from './design-system/index.jsx'
 import { COUNTRIES, validatePreOrderForm } from './preOrderForm.js'
 
@@ -113,20 +114,20 @@ export function PreOrderModal({ open, onRequestClose, backgroundImage, returnFoc
         aria-labelledby="preorder-modal-title"
         aria-describedby="preorder-modal-description"
       >
-        <IconButton className="preorder-modal__close" label="Close pre-order form" variant="plain" size="small" icon={<CloseIcon />} onClick={() => closeHandlerRef.current?.()} />
+        <IconButton className="preorder-modal__close" label={content.preOrderModal.closeButtonLabel} variant="plain" size="small" icon={<CloseIcon />} onClick={() => closeHandlerRef.current?.()} />
         <div className="preorder-modal__form-pane">
           <header className="preorder-modal__intro">
-            <Type as="h2" role="h1" id="preorder-modal-title"><span>TAKE THE</span><span>NEXT STEP</span></Type>
-            <Type role="body-large" id="preorder-modal-description"><span>Reserve your MO/GO and be the first to</span><span>experience the future of movement.</span></Type>
+            <Type as="h2" role="h1" id="preorder-modal-title">{content.preOrderModal.title.split('\n').map((line) => <span key={line}>{line}</span>)}</Type>
+            <Type role="body-large" id="preorder-modal-description">{content.preOrderModal.description.split('\n').map((line) => <span key={line}>{line}</span>)}</Type>
           </header>
           <form className="preorder-modal__form" noValidate onSubmit={submit}>
             <div className="preorder-modal__name-row">
-              <Field id="firstName" name="firstName" label="FIRST NAME" type="text" autoComplete="given-name" required value={values.firstName} error={errors.firstName} onChange={updateValue} />
-              <Field id="lastName" name="lastName" label="LAST NAME" type="text" autoComplete="family-name" required value={values.lastName} error={errors.lastName} onChange={updateValue} />
+              <Field id="firstName" name="firstName" label={content.preOrderModal.fields.firstName.label} type="text" autoComplete="given-name" required value={values.firstName} error={errors.firstName} onChange={updateValue} />
+              <Field id="lastName" name="lastName" label={content.preOrderModal.fields.lastName.label} type="text" autoComplete="family-name" required value={values.lastName} error={errors.lastName} onChange={updateValue} />
             </div>
-            <Field id="email" name="email" label="EMAIL ADDRESS" type="email" autoComplete="email" required value={values.email} error={errors.email} onChange={updateValue} />
-            <Field id="country" name="country" label="COUNTRY / REGION" autoComplete="country" required value={values.country} error={errors.country} options={COUNTRIES} onChange={updateValue} />
-            <Button type="submit" variant="primary-borderless" size="large">RESERVE YOUR MO/GO</Button>
+            <Field id="email" name="email" label={content.preOrderModal.fields.email.label} type="email" autoComplete="email" required value={values.email} error={errors.email} onChange={updateValue} />
+            <Field id="country" name="country" label={content.preOrderModal.fields.country.label} placeholder={content.preOrderModal.fields.country.placeholder} autoComplete="country" required value={values.country} error={errors.country} options={COUNTRIES} onChange={updateValue} />
+            <Button type="submit" variant="primary-borderless" size="large">{content.cta.reserveMogo}</Button>
           </form>
         </div>
         <div className="preorder-modal__media" aria-hidden="true"><img src={backgroundImage.src} srcSet={backgroundImage.srcSet} sizes={backgroundImage.sizes} width={backgroundImage.width} height={backgroundImage.height} alt="" decoding="async" /></div>

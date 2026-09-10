@@ -22,6 +22,7 @@ registerHooks({
       loader: 'jsx',
       sourcefile,
       sourcemap: 'inline',
+      supported: { 'import-attributes': true },
       target: 'es2022',
     })
 
