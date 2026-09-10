@@ -24,18 +24,36 @@
     "reserveMogo": "RESERVE YOUR MO/GO"
   },
   "hero": {
-    "title": "MEET\nNEW\nMO/GO",
+    "title": "MEETТЭ\nNEW\nMO/GO",
     "subtitle": "Wearable tech for more freedom\nin every step you make.",
     "description": "MO/GO helps you go further, climb higher\nand stay active—so you can keep exploring\nwhat moves you.",
     "metrics": [
-      { "label": "Uphill Support", "value": "+40%" },
-      { "label": "Impact Reduction", "value": "-30%" },
-      { "label": "Battery Life", "value": "8+ hrs" },
-      { "label": "Weight", "value": "1.8 kg" }
+      {
+        "label": "Uphill Support",
+        "value": "+40%"
+      },
+      {
+        "label": "Impact Reduction",
+        "value": "-30%"
+      },
+      {
+        "label": "Battery Life",
+        "value": "8+ hrs"
+      },
+      {
+        "label": "Weight",
+        "value": "1.8 kg"
+      }
     ],
     "outcomes": [
-      { "label": "REDUCTION IN\nLEG STRAIN", "value": "30%" },
-      { "label": "MORE ENDURANCE\nON EVERY HIKE", "value": "2.5x" }
+      {
+        "label": "REDUCTION IN\nLEG STRAIN",
+        "value": "30%"
+      },
+      {
+        "label": "MORE ENDURANCE\nON EVERY HIKE",
+        "value": "2.5x"
+      }
     ]
   },
   "howItWorks": {
@@ -48,10 +66,26 @@
       "Built to\nmove"
     ],
     "steps": [
-      { "number": "01", "title": "Take the first step", "description": "Tell us about your goals and how you move." },
-      { "number": "02", "title": "Find your fit", "description": "We recommend the right MO/GO system for you." },
-      { "number": "03", "title": "Get set up", "description": "Receive your system and set it up with guidance." },
-      { "number": "04", "title": "Move with confidence", "description": "Wear, adapt, and go further with every step." }
+      {
+        "number": "01",
+        "title": "Take the first step",
+        "description": "Tell us about your goals and how you move."
+      },
+      {
+        "number": "02",
+        "title": "Find your fit",
+        "description": "We recommend the right MO/GO system for you."
+      },
+      {
+        "number": "03",
+        "title": "Get set up",
+        "description": "Receive your system and set it up with guidance."
+      },
+      {
+        "number": "04",
+        "title": "Move with confidence",
+        "description": "Wear, adapt, and go further with every step."
+      }
     ]
   },
   "technology": {
@@ -60,12 +94,36 @@
     "image": "/assets/skip/optimized/technology-1536.webp",
     "viewerLabel": "Interactive 3D model of the MO/GO powered wearable support system. Drag or use arrow keys to rotate.",
     "features": [
-      { "number": "01", "title": "SENSES MOVEMENT", "description": "Advanced sensors detect\nyour movement and terrain\nin real time." },
-      { "number": "02", "title": "ADAPTS INSTANTLY", "description": "Smart algorithms adjust\nsupport to your pace,\nstride, and activity." },
-      { "number": "03", "title": "NATURAL SUPPORT", "description": "Works with your body\n— not against it." },
-      { "number": "04", "title": "PROVIDES ASSIST", "description": "Targeted power delivers\nextra boost when you need\nit most." },
-      { "number": "05", "title": "LIGHTWEIGHT DESIGN", "description": "Built with premium materials\nto keep you moving freely\nwithout extra weight." },
-      { "number": "06", "title": "BUILT TO ENDURE", "description": "Long-lasting performance\nso you can go further\nwith less fatigue." }
+      {
+        "number": "01",
+        "title": "SENSES MOVEMENT",
+        "description": "Advanced sensors detect\nyour movement and terrain\nin real time."
+      },
+      {
+        "number": "02",
+        "title": "ADAPTS INSTANTLY",
+        "description": "Smart algorithms adjust\nsupport to your pace,\nstride, and activity."
+      },
+      {
+        "number": "03",
+        "title": "NATURAL SUPPORT",
+        "description": "Works with your body\n— not against it."
+      },
+      {
+        "number": "04",
+        "title": "PROVIDES ASSIST",
+        "description": "Targeted power delivers\nextra boost when you need\nit most."
+      },
+      {
+        "number": "05",
+        "title": "LIGHTWEIGHT DESIGN",
+        "description": "Built with premium materials\nto keep you moving freely\nwithout extra weight."
+      },
+      {
+        "number": "06",
+        "title": "BUILT TO ENDURE",
+        "description": "Long-lasting performance\nso you can go further\nwith less fatigue."
+      }
     ]
   },
   "testimonials": {
@@ -109,15 +167,32 @@
     "groups": [
       {
         "title": "PRODUCT",
-        "links": ["MO/GO Overview", "Key Features", "Product Design", "Tech Specifications", "Pre-Order"]
+        "links": [
+          "MO/GO Overview",
+          "Key Features",
+          "Product Design",
+          "Tech Specifications",
+          "Pre-Order"
+        ]
       },
       {
         "title": "COMPANY",
-        "links": ["Our Mission", "About Skip", "Careers", "News & Press", "Contact Us"]
+        "links": [
+          "Our Mission",
+          "About Skip",
+          "Careers",
+          "News & Press",
+          "Contact Us"
+        ]
       },
       {
         "title": "RESOURCES",
-        "links": ["How It Works", "Technology", "User Stories", "FAQs"]
+        "links": [
+          "How It Works",
+          "Technology",
+          "User Stories",
+          "FAQs"
+        ]
       }
     ],
     "socialLinks": {
