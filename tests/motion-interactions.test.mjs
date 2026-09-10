@@ -4,6 +4,7 @@ import { createRequire } from 'node:module'
 import test from 'node:test'
 import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
+import generatedContent from '../src/generated/content.json' with {type: 'json'}
 
 const importMotionModel = () => import('../src/motionModel.js')
 const require = createRequire(import.meta.url)
@@ -911,7 +912,11 @@ test('rendered testimonial identity and copy share one carousel state with acces
     assert.doesNotMatch(markup, /aria-label="(?:Previous|Next) testimonial"[^>]*disabled/)
     assert.match(markup, /aria-live="polite"/)
     assert.match(markup, /aria-atomic="true"/)
-    assert.match(markup, /Testimonial 1 of 3: DANIEL R\./)
+    const expectedStatus = generatedContent.testimonials.statusTemplate
+      .replace('{current}', '1')
+      .replace('{total}', String(generatedContent.testimonials.items.length))
+      .replace('{name}', generatedContent.testimonials.items[0].name)
+    assert.ok(markup.includes(expectedStatus))
     assert.match(markup, /<blockquote[^>]+data-testimonial-entrance="quote"[^>]+data-motion-heading-mode="coherent"/)
 })
 

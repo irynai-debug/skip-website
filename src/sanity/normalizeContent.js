@@ -1,4 +1,7 @@
 const IMAGE_PATHS = new Set(['technology.image'])
+const VARIABLE_LENGTH_ARRAY_RULES = new Map([
+  ['testimonials.items', {min: 1}],
+])
 
 function isImagePath(path) {
   return IMAGE_PATHS.has(path) || /^testimonials\.items\.\d+\.image$/.test(path)
@@ -25,8 +28,16 @@ function normalizeValue(remote, fallback, path, strict) {
   }
 
   if (Array.isArray(fallback)) {
-    if (!Array.isArray(remote) || remote.length !== fallback.length) {
-      if (strict) throw invalid(path, `an array with ${fallback.length} items`)
+    const variableLengthRule = VARIABLE_LENGTH_ARRAY_RULES.get(path)
+    const hasInvalidLength = variableLengthRule
+      ? !Array.isArray(remote) || remote.length < variableLengthRule.min
+      : !Array.isArray(remote) || remote.length !== fallback.length
+
+    if (hasInvalidLength) {
+      const expected = variableLengthRule
+        ? `an array with at least ${variableLengthRule.min} item`
+        : `an array with ${fallback.length} items`
+      if (strict) throw invalid(path, expected)
       return structuredClone(fallback)
     }
 

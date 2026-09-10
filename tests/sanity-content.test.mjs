@@ -55,6 +55,50 @@ test('valid Sanity content becomes the complete runtime snapshot with CDN image 
   )
 })
 
+test('strict normalization accepts a single testimonial', () => {
+  const remote = validRemoteContent()
+  remote.testimonials.items = remote.testimonials.items.slice(0, 1)
+
+  const content = normalizeSanityContent(remote, fallback, {strict: true})
+
+  assert.equal(content.testimonials.items.length, 1)
+  assert.equal(content.testimonials.items[0].name, fallback.testimonials.items[0].name)
+  assert.equal(
+    content.testimonials.items[0].image,
+    'https://cdn.sanity.io/images/abc123/production/testimonial-1.webp',
+  )
+})
+
+test('strict normalization accepts testimonials beyond the fallback length', () => {
+  const remote = validRemoteContent()
+  remote.testimonials.items.push({
+    ...structuredClone(remote.testimonials.items[0]),
+    name: 'ALEX P.',
+    image: {
+      url: 'https://cdn.sanity.io/images/abc123/production/testimonial-4.webp',
+    },
+  })
+
+  const content = normalizeSanityContent(remote, fallback, {strict: true})
+
+  assert.equal(content.testimonials.items.length, 4)
+  assert.equal(content.testimonials.items[3].name, 'ALEX P.')
+  assert.equal(
+    content.testimonials.items[3].image,
+    'https://cdn.sanity.io/images/abc123/production/testimonial-4.webp',
+  )
+})
+
+test('strict normalization rejects an empty testimonials collection', () => {
+  const remote = validRemoteContent()
+  remote.testimonials.items = []
+
+  assert.throws(
+    () => normalizeSanityContent(remote, fallback, {strict: true}),
+    /testimonials\.items: expected an array with at least 1 item/,
+  )
+})
+
 test('ordinary local normalization preserves project-owned image fallbacks when an image is absent', () => {
   const remote = validRemoteContent()
   delete remote.technology.image

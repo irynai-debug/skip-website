@@ -33,6 +33,7 @@ const responsiveAsset = ({ stem, widths, width, height, sizes, densityBase }) =>
 
 export const resolveEditableImageAsset = (imagePath, optimizedAsset) => {
   const src = assetPath(imagePath)
+  if (!optimizedAsset) return Object.freeze({ src })
   if (!src || src === optimizedAsset.src) return optimizedAsset
 
   if (/^https:\/\/cdn\.sanity\.io\/images\//i.test(src) && optimizedAsset.sources) {
@@ -213,7 +214,10 @@ export const TESTIMONIALS = Object.freeze(content.testimonials.items.map((item, 
   role: item.role,
   quote: item.quote,
   body: item.description,
-  image: resolveEditableImageAsset(item.image, TESTIMONIAL_IMAGE_FALLBACKS[index]),
+  image: resolveEditableImageAsset(
+    item.image,
+    TESTIMONIAL_IMAGE_FALLBACKS[index % TESTIMONIAL_IMAGE_FALLBACKS.length],
+  ),
   alt: item.imageAlt,
 })))
 

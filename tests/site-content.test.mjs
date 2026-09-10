@@ -5,6 +5,7 @@ import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
 import * as content from '../src/siteContent.js'
+import generatedContent from '../src/generated/content.json' with {type: 'json'}
 import { Site } from '../src/Site.jsx'
 
 const readInteractiveSource = () => readFile(new URL('../src/site/InteractiveSections.jsx', import.meta.url), 'utf8')
@@ -87,38 +88,26 @@ test('the technology model preserves its six features and exact em dash', () => 
   assert.equal(content.TECHNOLOGY_FEATURES[2].body, 'Works with your body\n— not against it.')
 })
 
-test('the testimonial carousel preserves all three exact content states', () => {
-  assert.deepEqual(content.TESTIMONIALS.map(({ image, ...item }) => item), [
-    {
-      name: 'DANIEL R.',
-      role: 'HIKER & TRAVELER',
-      quote: 'I can hike longer,\nclimb higher and explore\nmore with less strain.',
-      body: 'MO/GO gives me the support I need to stay\nactive and keep doing what I love.',
-      alt: 'Daniel, a hiker and traveler, in the mountains',
-    },
-    {
-      name: 'MAYA L.',
-      role: 'TRAIL RUNNER & EXPLORER',
-      quote: 'I move with more confidence,\ncover more ground and still have\nenergy left.',
-      body: 'MO/GO adapts naturally to my movement, so every\ntrail feels easier and more enjoyable.',
-      alt: 'Maya, a trail runner and explorer, on a green hillside',
-    },
-    {
-      name: 'MICHAEL T.',
-      role: 'HIKER & PHOTOGRAPHER',
-      quote: 'Steep climbs feel smoother,\nlonger walks feel lighter and I\ncan keep going.',
-      body: 'MO/GO helps reduce the effort of each step without\nchanging how I naturally move.',
-      alt: 'Michael, a hiker and photographer, on a rocky trail',
-    },
-  ])
+test('the testimonial carousel maps every editable content state', () => {
+  assert.deepEqual(
+    content.TESTIMONIALS.map(({ image, ...item }) => item),
+    generatedContent.testimonials.items.map((item) => ({
+      name: item.name,
+      role: item.role,
+      quote: item.quote,
+      body: item.description,
+      alt: item.imageAlt,
+    })),
+  )
   content.TESTIMONIALS.forEach(({ image }) => {
     assert.deepEqual(image.sources.map(({ width }) => width), [192, 384])
     assert.equal(image.srcSet, image.sources.map(({ src, width }) => `${src} ${width}w`).join(', '))
     assert.equal(image.sizes, '(max-width: 480px) 96px, (max-width: 820px) 128px, 176px')
   })
-  assert.equal(content.getAdjacentTestimonialIndex(0, -1), 2)
-  assert.equal(content.getAdjacentTestimonialIndex(0, 1), 1)
-  assert.equal(content.getAdjacentTestimonialIndex(2, 1), 0)
+  const lastIndex = content.TESTIMONIALS.length - 1
+  assert.equal(content.getAdjacentTestimonialIndex(0, -1), lastIndex)
+  assert.equal(content.getAdjacentTestimonialIndex(0, 1), content.TESTIMONIALS.length === 1 ? 0 : 1)
+  assert.equal(content.getAdjacentTestimonialIndex(lastIndex, 1), 0)
   assert.equal(content.FOOTER_COPY.heading, 'READY TO MOVE\nFURTHER?')
   assert.equal(content.FOOTER_COPY.body, 'Reserve your MO/GO and\ndiscover what’s possible.')
   assert.equal(content.FOOTER_COPY.copyright, '© 2025 Skip. All rights reserved.')
@@ -168,6 +157,12 @@ test('CMS image paths preserve responsive delivery and safely replace non-Sanity
 
   const interactiveSource = await readInteractiveSource()
   assert.match(interactiveSource, /poster=\{TECHNOLOGY_POSTER\}/)
+})
+
+test('a Sanity testimonial image resolves without a predefined fallback descriptor', () => {
+  const src = 'https://cdn.sanity.io/images/abc123/production/testimonial-4.webp'
+
+  assert.deepEqual(content.resolveEditableImageAsset(src), {src})
 })
 
 test('production actions use verified official Skip destinations', () => {
