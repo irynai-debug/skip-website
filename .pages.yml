@@ -44,12 +44,14 @@ content:
           - name: metrics
             type: list
             list:
+              type: object
               fields:
                 - { name: label, type: string }
                 - { name: value, type: string }
           - name: outcomes
             type: list
             list:
+              type: object
               fields:
                 - { name: label, type: string }
                 - { name: value, type: string }
@@ -63,11 +65,11 @@ content:
           - name: callouts
             type: list
             list:
-              fields:
-                - { name: value, type: string }
+              type: string
           - name: steps
             type: list
             list:
+              type: object
               fields:
                 - { name: number, type: string }
                 - { name: title, type: string }
@@ -82,6 +84,7 @@ content:
           - name: features
             type: list
             list:
+              type: object
               fields:
                 - { name: number, type: string }
                 - { name: title, type: string }
@@ -97,6 +100,7 @@ content:
           - name: items
             type: list
             list:
+              type: object
               fields:
                 - { name: name, type: string }
                 - { name: role, type: string }
@@ -115,13 +119,13 @@ content:
           - name: groups
             type: list
             list:
+              type: object
               fields:
                 - { name: title, type: string }
                 - name: links
                   type: list
                   list:
-                    fields:
-                      - { name: value, type: string }
+                    type: string
           - name: socialLinks
             type: object
             fields:
@@ -161,17 +165,4 @@ content:
                 type: object
                 fields:
                   - { name: label, type: string }
-                  - { name: requiredError, type: string }
-                  - { name: invalidError, type: string }
-              - name: country
-                type: object
-                fields:
-                  - { name: label, type: string }
-                  - { name: placeholder, type: string }
-                  - { name: requiredError, type: string }
-
-      - name: notFound
-        type: object
-        fields:
-          - { name: title, type: string }
-          - { name: returnHomeButton, type: string }
+                  - { name: requiredError, type:
